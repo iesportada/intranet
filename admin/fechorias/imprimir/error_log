@@ -1,0 +1,7 @@
+[30-Sep-2015 02:48:36 America/Chicago] PHP Parse error:  syntax error, unexpected '$GLOBALS' (T_VARIABLE) in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/expulsioncentro.php on line 19
+[30-Sep-2015 03:09:06 America/Chicago] PHP Parse error:  syntax error, unexpected '$GLOBALS' (T_VARIABLE) in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/expulsioncentro.php on line 19
+[30-Sep-2015 03:12:20 America/Chicago] PHP Parse error:  syntax error, unexpected '$GLOBALS' (T_VARIABLE) in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/expulsioncentro.php on line 19
+[03-Nov-2015 05:42:53 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/parte.php on line 16
+[03-Nov-2015 05:42:53 America/Chicago] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/parte.php on line 18
+[03-Nov-2015 05:42:53 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/parte.php on line 212
+[03-Nov-2015 05:42:53 America/Chicago] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home1/rasuba/public_html/intranet/admin/fechorias/imprimir/parte.php on line 219

@@ -1,0 +1,9 @@
+[29-Nov-2015 02:36:12 America/Chicago] PHP Warning:  require(../bootstrap.php): failed to open stream: No such file or directory in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:12 America/Chicago] PHP Warning:  require(../bootstrap.php): failed to open stream: No such file or directory in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:12 America/Chicago] PHP Fatal error:  require(): Failed opening required '../bootstrap.php' (include_path='.:/opt/php54/lib/php') in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:50 America/Chicago] PHP Warning:  require(../bootstrap.php): failed to open stream: No such file or directory in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:50 America/Chicago] PHP Warning:  require(../bootstrap.php): failed to open stream: No such file or directory in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:50 America/Chicago] PHP Fatal error:  require(): Failed opening required '../bootstrap.php' (include_path='.:/opt/php54/lib/php') in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:54 America/Chicago] PHP Warning:  require(../bootstrap.php): failed to open stream: No such file or directory in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:54 America/Chicago] PHP Warning:  require(../bootstrap.php): failed to open stream: No such file or directory in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2
+[29-Nov-2015 02:36:54 America/Chicago] PHP Fatal error:  require(): Failed opening required '../bootstrap.php' (include_path='.:/opt/php54/lib/php') in /home1/rasuba/public_html/intranet/admin/faltas/index.php on line 2

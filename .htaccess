@@ -1,0 +1,7 @@
+RewriteEngine on
+
+# Use PHPcur as default
+AddHandler application/x-httpd-phpcur .php
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /opt/phpcur/lib
+</IfModule>

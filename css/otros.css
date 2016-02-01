@@ -1,0 +1,298 @@
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+	padding-top: 70px;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@media print {
+	body {
+		padding-top: 0;
+	}
+	
+	a:after, abbr:after {
+		content: "" !important;
+	}
+}
+
+/* COLUMNAS */
+
+.col-sm-20 {
+	position: relative; 
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+	float: left;
+	width: 20%;
+}
+
+/* DataTables */
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background-color: #ebf0f1;
+    cursor: pointer;
+}
+
+table.dataTable thead .sorting_asc:after {
+    content: "\f0de";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting_desc:after {
+    content: "\f0dd";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting:after {
+    content: "\f0dc";
+    float: right;
+    font-family: fontawesome;
+    color: rgba(50,50,50,.5);
+}
+
+
+/* SUMMERNOTE */
+
+.note-editable {
+	background-color: #fff;
+}
+
+/* TABLE */
+
+.table thead th {
+	background-color: #ebf0f1;
+	text-transform: uppercase;
+}
+
+.table-vcentered th, .table-vcentered td {
+	vertical-align: middle !important;
+}
+
+.table-centered th, .table-centered td {
+	text-align: center;
+}
+
+.alert a, .alert legend{
+	color: #fff;	
+}
+
+.Rotate-90
+{
+  -webkit-transform: rotate(-80deg);
+  -moz-transform: rotate(-80deg);
+  -ms-transform: rotate(-80deg);
+  -o-transform: rotate(-80deg);
+  transform: rotate(-80deg);
+
+  font-size: 10px;
+  width:40px;
+  position:relative;
+  top:75px;
+}
+.Rotate-corto
+{
+  -webkit-transform: rotate(-80deg);
+  -moz-transform: rotate(-80deg);
+  -ms-transform: rotate(-80deg);
+  -o-transform: rotate(-80deg);
+  transform: rotate(-80deg);
+  font-size: 10px;
+  width:40px;
+  position:relative;
+  top:60px;
+}
+
+li.nav-header {
+	padding-top: 15px;
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+
+.dropdown-menu>li>a {
+	padding: 8px 20px !important;
+}
+
+.dropdown-menu .divider {
+	margin: 2px 0;
+}
+
+.dropdown-messages {
+	min-width: 380px;
+}
+
+.dropdown-messages.dropdown-menu>li>a {
+	white-space: normal !important;
+}
+
+.dropdown-feed {
+	min-width: 610px;
+}
+
+ul.dropdown-feed>li>a {
+	white-space: normal;
+}
+
+
+/* CALENDARIOS */
+.calendar-today, .table-striped>tbody>tr:nth-child(odd)>td.calendar-today {
+	background-color: #2b3d4f;
+	color: #fffffe;
+}
+
+.calendar-orange, .table-striped>tbody>tr:nth-child(odd)>td.calendar-orange {
+	background-color: #f29b12;
+	color: #fffffe;
+}
+
+.calendar-blue, .table-striped>tbody>tr:nth-child(odd)>td.calendar-blue {
+	background-color: #3397db;
+	color: #fffffe;
+}
+
+.calendar-red, .table-striped>tbody>tr:nth-child(odd)>td.calendar-red {
+	background-color: #e14939;
+	color: #fffffe;
+}
+
+.calendar-today a, .calendar-orange a, .calendar-blue a, .calendar-red a {
+	color: #fff;
+}
+
+
+/* FECHORIAS */
+
+.expulsion-centro, .table-striped>tbody>tr:nth-child(odd)>td.expulsion-centro {
+	background-color: #FF4444;
+}
+
+.expulsion-aula, .table-striped>tbody>tr:nth-child(odd)>td.expulsion-aula {
+	background-color: #FFBB33;
+}
+
+.amonestacion-escrita, .table-striped>tbody>tr:nth-child(odd)>td.amonestacion-escrita {
+	background-color: #33B5E5;
+}
+
+.aula-convivencia-jefatura, .table-striped>tbody>tr:nth-child(odd)>td.aula-convivencia-jefatura {
+	background-color: #AA66CC;
+}
+
+.aula-convivencia-profesor, .table-striped>tbody>tr:nth-child(odd)>td.aula-convivencia-profesor {
+	background-color: #99CC00;
+}
+
+
+/* DESCRIPTIONS */ 
+
+dt, dd {
+	padding: 2px 0;
+}
+
+/* ALERTS */
+
+.alert .alert-link {
+	text-decoration: none;
+}
+
+/* POPOVER TOUR */
+.tour-backdrop {
+	background-color: #fff !important;
+	opacity: .6 !important;
+} 
+
+.popover.tour-tour {
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+}
+
+div#step-0.popover.tour.orphan.tour-tour.tour-tour-0.fade.top.in {
+	top: 160px !important;
+}
+
+div.tour > h3.popover-title, 
+div.tour > div.popover-content,
+div.tour > div.popover-navigation {
+	padding: 15px 25px !important;
+}
+	
+div.tour > div.popover-content {
+	font-size: 16px !important;
+}
+
+
+/* LOGIN FORM */
+.form-signin {
+  max-width: 350px;
+  padding: 15px;
+  margin: 30px auto;
+}
+
+@media (max-width: 768px) {
+	#login {
+	  padding-top: 0;
+	}
+	
+	#login h1 {
+		font-size: 30px;
+	}
+}
+
+.form-signin .form-signin-heading {
+  margin-bottom: 10px;
+}
+.form-signin .form-signin-footer {
+  margin-top: 10px;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#wrapper {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -130px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+#footer {
+  height: 130px;
+}
+
+.text-default{
+	color:#95a5a6;
+}
+

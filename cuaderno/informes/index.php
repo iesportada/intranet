@@ -1,0 +1,1 @@
+<?php defined('INTRANET_DIRECTORY') OR exit('No direct script access allowed'); ?>
