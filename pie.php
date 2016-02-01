@@ -12,7 +12,7 @@
     			<small>
     				<a href="//<?php echo $config['dominio']; ?>/intranet/LICENSE.md" target="_blank">Licencia de uso</a>
     				&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;&nbsp;
-    				<a href="https://github.com/IESMonterroso/intranet" target="_blank">Github</a>
+    				<a href="https://github.com/iesportada/intranet" target="_blank">Github</a>
     			</small>
     		</p>
     	</div>
