@@ -5,7 +5,7 @@
 <br>
 <h4><span class="fa fa-fire fa-fw"></span> Noticias destacadas</h4>
 
-<?php $result = mysqli_query($db_con, "SELECT id, slug, timestamp, clase from noticias where pagina like '%1%' and fechafin >= '".date('Y-m-d')."' ORDER BY timestamp DESC"); ?>
+<?php $result = mysqli_query($db_con, "SELECT id, slug, timestamp, clase from noticias where pagina like '%1%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY timestamp DESC"); ?>
 <?php if(mysqli_num_rows($result)): ?>
 
 <div class="list-group">
