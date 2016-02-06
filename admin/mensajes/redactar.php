@@ -28,6 +28,7 @@ $ca = $_POST['ca'];
 $direccion = $_POST['direccion'];
 $orientacion = $_POST['orientacion'];
 $bilingue = $_POST['bilingue'];
+$pas = $_POST['pas'];
 $biblio = $_POST['biblio'];
 $profesor = $_POST['profesor'];
 
@@ -225,6 +226,14 @@ $page_header = "Redactar mensaje";
                 	</div>
                 </div>
                 
+                 <div class="form-group">
+                	<div class="checkbox">
+                		<label>
+                			<input id="pas" name="pas" type="checkbox" value="1" <?php if($pas=='1' and !$claustro) echo 'checked'; ?>> Personal de Administración
+                		</label>
+                	</div>
+                </div>
+
                 <?php if(isset($config['mod_biblioteca']) && $config['mod_biblioteca']): ?>
                 <div class="form-group">
                 	<div class="checkbox">
@@ -465,6 +474,26 @@ $page_header = "Redactar mensaje";
 				</div>
 				
 				
+				<!-- PAS -->
+				<div id="grupo_pas" class="well <?php echo (isset($pas) && !empty($pas)) ? '' : 'hidden'; ?>">
+					
+					<fieldset>
+						<legend>Personal de Administración</legend>
+						
+						<?php $result = mysqli_query($db_con, "SELECT DISTINCT nombre FROM departamentos WHERE cargo LIKE '%7%' ORDER BY nombre ASC"); ?>
+						<?php if(mysqli_num_rows($result)): ?>
+						<ul style="height: auto; max-height: 520px; overflow: scroll;">
+							<?php while($row = mysqli_fetch_array($result)): ?>
+							<li><?php echo $row['nombre'] ; ?></li>
+							<?php endwhile; ?>
+							<?php mysqli_free_result($result); ?>
+						</ul>
+						<?php endif; ?>
+						
+					</fieldset>
+				</div>
+				
+
 				<!-- BIBLIOTECA -->
 				<div id="grupo_biblioteca" class="well <?php echo (isset($biblio) && !empty($biblio)) ? '' : 'hidden'; ?>">
 					
@@ -483,6 +512,7 @@ $page_header = "Redactar mensaje";
 						
 					</fieldset>
 				</div>
+				
 				
 				
 				<!-- JEFES DE DEPARTAMENTO -->
@@ -692,6 +722,7 @@ $page_header = "Redactar mensaje";
 					$('#tutores').prop('disabled', true);
 					$('#departamentos').prop('disabled', true);
 					$('#equipos').prop('disabled', true);
+					$('#pas').prop('disabled', true);
 					$('#biblio').prop('disabled', true);
 					$('#etcp').prop('disabled', true);
 					$('#ca').prop('disabled', true);
@@ -706,6 +737,7 @@ $page_header = "Redactar mensaje";
 					$('#tutores').prop('disabled', false);
 					$('#departamentos').prop('disabled', false);
 					$('#equipos').prop('disabled', false);
+					$('#pas').prop('disabled', false);
 					$('#biblio').prop('disabled', false);
 					$('#etcp').prop('disabled', false);
 					$('#ca').prop('disabled', false);
@@ -714,6 +746,16 @@ $page_header = "Redactar mensaje";
 					$('#bilingue').prop('disabled', false);
 					$('#padres').prop('disabled', false);
 					
+				}
+			});
+			
+			// Biblioteca
+			$('#pas').change(function() {
+				if(pas.checked==true) {
+					$('#grupo_pas').removeClass('hidden');
+				}
+				else {
+					$('#grupo_pas').addClass('hidden');
 				}
 			});
 
@@ -832,13 +874,13 @@ $page_header = "Redactar mensaje";
 	    }
 	
 	    // Comprobación de Grupo de destinatarios sin marcar       
-	    if(formulario.profes.checked == false && formulario.tutores.checked == false && formulario.departamentos.checked == false && formulario.equipos.checked == false && formulario.claustro.checked == false && formulario.biblio.checked == false && formulario.etcp.checked == false && formulario.ca.checked == false && formulario.direccion.checked == false && formulario.orientacion.checked == false <?php if(isset($config['mod_bilingue']) && $config['mod_bilingue']): ?>&& formulario.bilingue.checked == false<?php endif; ?><?php if(stristr($_SESSION['cargo'],'1') == TRUE || stristr($_SESSION['cargo'],'2') == TRUE): ?>&& formulario.padres.checked == false<?php endif; ?>) {
+	    if(formulario.profes.checked == false && formulario.tutores.checked == false && formulario.departamentos.checked == false && formulario.equipos.checked == false && formulario.claustro.checked == false && formulario.pas.checked == false && formulario.biblio.checked == false && formulario.etcp.checked == false && formulario.ca.checked == false && formulario.direccion.checked == false && formulario.orientacion.checked == false <?php if(isset($config['mod_bilingue']) && $config['mod_bilingue']): ?>&& formulario.bilingue.checked == false<?php endif; ?><?php if(stristr($_SESSION['cargo'],'1') == TRUE || stristr($_SESSION['cargo'],'2') == TRUE): ?>&& formulario.padres.checked == false<?php endif; ?>) {
 			bootbox.alert("No ha seleccionado ningún grupo de destinatarios para el mensaje.");
 			return false;
 	    }
 		
 	    // Comprobación de destinatario vacío
-	    if(formulario.claustro.checked == false && formulario.biblio.checked == false && formulario.etcp.checked == false && formulario.ca.checked == false && formulario.direccion.checked == false && formulario.orientacion.checked == false <?php if(isset($config['mod_bilingue']) && $config['mod_bilingue']): ?>&& formulario.bilingue.checked == false<?php endif; ?>) {
+	    if(formulario.claustro.checked == false && formulario.pas.checked == false && formulario.biblio.checked == false && formulario.etcp.checked == false && formulario.ca.checked == false && formulario.direccion.checked == false && formulario.orientacion.checked == false <?php if(isset($config['mod_bilingue']) && $config['mod_bilingue']): ?>&& formulario.bilingue.checked == false<?php endif; ?>) {
 		    if(document.forms['formulario']['profeso[]'].selectedIndex == -1 && document.forms['formulario']['equipo[]'].selectedIndex == -1 && document.forms['formulario']['tutor[]'].selectedIndex == -1 && document.forms['formulario']['departamento[]'].selectedIndex == -1 <?php if(stristr($_SESSION['cargo'],'1') == TRUE || stristr($_SESSION['cargo'],'2') == TRUE): ?>&& document.forms['formulario']['padres[]'].selectedIndex == -1<?php endif; ?>) {
 		    	bootbox.alert("No ha seleccionado ningún destinatario para el mensaje.");
 		    	return false;

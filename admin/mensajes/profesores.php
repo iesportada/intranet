@@ -173,7 +173,20 @@ if(isset($_POST['submit1'])) {
 				mysqli_query($db_con, "update mens_texto set destino = 'Bilinguismo' where id = '$id'");
 				$ok=1;
 				}
-				
+
+			if($pas == '1')
+				{
+				$pas0 = mysqli_query($db_con, "select distinct idea from departamentos where cargo like '%7%'");
+				while($pas1 = mysqli_fetch_array($pas0)){
+				$rep0 = mysqli_query($db_con, "select * from mens_profes where id = '$id' and profesor = '$pas1[0]'");
+				$num0 = mysqli_fetch_row($rep0);
+				if(strlen($num0[0]) < 1)	
+				mysqli_query($db_con, "insert into mens_profes (id_texto, profesor) values ('".$id."','".$pas1[0]."')");
+				}
+				mysqli_query($db_con, "update mens_texto set destino = 'PAS' where id = '$id'");
+				$ok=1;
+				}	
+
 			if($biblio == '1')
 				{
 				$biblio0 = mysqli_query($db_con, "select distinct idea from departamentos where cargo like '%c%'");

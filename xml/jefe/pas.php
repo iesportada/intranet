@@ -153,6 +153,33 @@ include("../../menu.php");
 											echo "</tr>\n";
 										}
 										
+										// Mentor acompañante = '';
+										if(stristr($pas_departamento, 'Mentor acompañante') == TRUE) {
+											
+											$resultDepto = mysqli_query($db_con, "SELECT * FROM departamentos WHERE idea = '$pas_idea'");
+											(mysqli_num_rows($resultDepto)) ? $usuarioExiste = 1 : $usuarioExiste = 0;
+											
+											$clase = '';
+											if(! $usuarioExiste) {
+												// TABLA DEPARTAMENTOS
+												mysqli_query($db_con, "INSERT INTO departamentos (NOMBRE, DNI, DEPARTAMENTO, CARGO, idea) VALUES ('".$pas_nombre."', '".$pas_dni."', 'Mentor acompañante', '', '".$pas_idea."')");
+												
+												// INCORPORACIÓN EN TABLA C_PROFES
+												mysqli_query($db_con, "INSERT INTO c_profes (pass, PROFESOR, dni, idea, estado) VALUES ('".sha1($pas_dni)."', '".$pas_nombre."', '".$pas_dni."', '".$pas_idea."', 0)");
+											
+												$clase = ' class="success"';
+											}
+											
+											echo "<tr".$clase.">\n";
+											echo "<td>".$pas_nombre."</td>\n";
+											echo "<td>".$pas_dni."</td>\n";
+											echo "<td>Mentor acompañante</td>\n";
+											echo "<td>".$pas_idea."</td>\n";
+											echo "<td>".$pas_dni."</td>\n";
+											echo "</tr>\n";
+										}
+										
+										
 										// Conserje = '6';
 										if($pas_departamento == 'Conserje' || $pas_departamento == 'Ordenanza') {
 										
