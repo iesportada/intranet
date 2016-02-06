@@ -7,18 +7,34 @@ include("../../menu.php");
 include("menu.php");
 
 $crea ="CREATE TABLE IF NOT EXISTS `morosos` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `curso` varchar(64) NOT NULL,
-  `apellidos` varchar(60) NOT NULL,
-  `nombre` varchar(25) NOT NULL,
-  `ejemplar` varchar(100) NOT NULL,
-  `devolucion` varchar(10) NOT NULL,
-  `hoy` date NOT NULL ,
-  `amonestacion` varchar(2) NOT NULL DEFAULT 'NO',
-  `sms` VARCHAR( 2 ) NOT NULL DEFAULT  'NO', 
-  PRIMARY KEY (`id`)
-) ";
+  `id` varchar(10) collate latin1_spanish_ci NOT NULL,
+  `curso` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `apellidos` varchar(60) collate latin1_spanish_ci NOT NULL,
+  `nombre` varchar(25) collate latin1_spanish_ci NOT NULL,
+  `ejemplar` varchar(100) collate latin1_spanish_ci NOT NULL,
+  `devolucion` varchar(10) collate latin1_spanish_ci NOT NULL,
+  `hoy` date NOT NULL,
+  `amonestacion` varchar(2) collate latin1_spanish_ci NOT NULL default 'NO',
+  `sms` varchar(2) collate latin1_spanish_ci NOT NULL default 'NO',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci";
 mysqli_query($db_con, $crea);
+
+ $result = mysqli_query($db_con,"SHOW COLUMNS FROM morosos");
+ if (mysqli_num_rows($result) > 0) {
+     while ($row = mysqli_fetch_array($result)) {
+         if($row[1]=='varchar(10)'){
+         $actua = 1;
+         }
+       }
+     }
+ 
+ if($actua==1){}
+ else{
+     mysqli_query($db_con,"ALTER TABLE  `morosos` CHANGE  `id`  `id` VARCHAR( 10 ) NOT NULL");
+     }
+     
+     
 ?>
 	<div class="container">
 		
@@ -85,7 +101,7 @@ mysqli_query($db_con, $crea);
 									
 									<ul>
 										<li>En Abies vamos a Préstamos-Informes y una vez en el asistente de creación de informes pulsamos Siguiente.</li>
-										<li>Seleccionamos de la lista de campos disponibles los siguientes: Curso, Apellidos, Nombre, Título, Devolución. Pulsamos Siguiente.</li>
+										<li>Seleccionamos de la lista de campos disponibles los siguientes: Curso, Apellidos, Nombre, Código Ejemplar, Título, Devolución. Pulsamos Siguiente.</li>
 										<li>En la siguiente pantalla elegimos "Archivo de Texto (campos delimitados) dejando el punto y coma como delimitador. Siguiente.</li>
 										<li>Esta pantalla podemos dejarla como está y pulsamos Siguiente.</li>
 										<li>Finalizamos guardando el documento generado en formato .txt.</li>
