@@ -98,7 +98,7 @@ function vista_mes ($calendario, $dia, $mes, $anio) {
 				// Consultamos los calendarios privados
 				$result_calendarios = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, color FROM calendario_categorias WHERE profesor='".$_SESSION['ide']."' AND espublico=0");
 				while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
-					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, fechafin FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND MONTH(fechaini)='$mes' ORDER BY horaini ASC, horafin ASC");
+					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, fechafin FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND '$mes' BETWEEN MONTH(fechaini) AND MONTH(fechafin) ORDER BY horaini ASC, horafin ASC");
 					
 					while ($eventos = mysqli_fetch_assoc($result_eventos)) {
 						if ($anio.'-'.$mes.'-'.$dia0 >= $eventos['fechaini'] && $anio.'-'.$mes.'-'.$dia0 <= $eventos['fechafin']) {
@@ -113,7 +113,7 @@ function vista_mes ($calendario, $dia, $mes, $anio) {
 				$result_calendarios = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, color FROM calendario_categorias WHERE espublico=1");
 				while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
 					
-					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, fechafin FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND MONTH(fechaini)='$mes' ORDER BY horaini ASC, horafin ASC");
+					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, fechafin FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND '$mes' BETWEEN MONTH(fechaini) AND MONTH(fechafin) ORDER BY horaini ASC, horafin ASC");
 					
 					while ($eventos = mysqli_fetch_assoc($result_eventos)) {
 						if ($anio.'-'.$mes.'-'.$dia0 >= $eventos['fechaini'] && $anio.'-'.$mes.'-'.$dia0 <= $eventos['fechafin']) {

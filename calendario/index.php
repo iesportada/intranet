@@ -95,7 +95,7 @@ function vista_mes ($calendario, $dia, $mes, $anio, $cargo) {
 				// Consultamos los calendarios privados del usuario
 				$result_calendarios = mysqli_query($GLOBALS['db_con'], "SELECT id, color FROM calendario_categorias WHERE profesor='".$_SESSION['ide']."' AND espublico=0");
 				while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
-					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, unidades FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND MONTH(fechaini)='$mes' ORDER BY horaini ASC, horafin ASC");
+					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, unidades FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND '$mes' BETWEEN MONTH(fechaini) AND MONTH(fechafin) ORDER BY horaini ASC, horafin ASC");
 					
 					while ($eventos = mysqli_fetch_assoc($result_eventos)) {
 						
@@ -117,7 +117,7 @@ function vista_mes ($calendario, $dia, $mes, $anio, $cargo) {
 				$result_calendarios = mysqli_query($GLOBALS['db_con'], "SELECT id, color FROM calendario_categorias WHERE espublico=1");
 				while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
 					
-					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, unidades FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND MONTH(fechaini)='$mes' ORDER BY horaini ASC, horafin ASC");
+					$result_eventos = mysqli_query($GLOBALS['db_con'], "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, unidades FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND '$mes' BETWEEN MONTH(fechaini) AND MONTH(fechafin) ORDER BY horaini ASC, horafin ASC");
 					
 					while ($eventos = mysqli_fetch_assoc($result_eventos)) {
 						
@@ -536,7 +536,7 @@ include("../menu.php"); ?>
 			<?php
 			$result_calendarios = mysqli_query($db_con, "SELECT id, color FROM calendario_categorias WHERE profesor='".$_SESSION['ide']."' AND espublico=0");
 			while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
-				$result_eventos = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND MONTH(fechaini)='$mes'");
+				$result_eventos = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND '$mes' BETWEEN MONTH(fechaini) AND MONTH(fechafin)");
 				
 				while ($eventos = mysqli_fetch_assoc($result_eventos)) {
 					echo '$("#cmp_fecha_diacomp_'.$eventos['id'].'").click(function() {  
@@ -559,7 +559,7 @@ include("../menu.php"); ?>
 			$result_calendarios = mysqli_query($db_con, "SELECT id, color FROM calendario_categorias WHERE espublico=1");
 			while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
 				
-				$result_eventos = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, fechafin FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND MONTH(fechaini)='$mes'");
+				$result_eventos = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, fechafin FROM calendario WHERE categoria='".$calendario['id']."' AND YEAR(fechaini)='$anio' AND '$mes' BETWEEN MONTH(fechaini) AND MONTH(fechafin)");
 				
 				while ($eventos = mysqli_fetch_assoc($result_eventos)) {
 					echo '$("#cmp_fecha_diacomp_'.$eventos['id'].'").click(function() {  
