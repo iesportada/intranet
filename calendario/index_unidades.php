@@ -123,8 +123,21 @@ function vista_mes ($calendario, $dia, $mes, $anio, $unidad) {
 							$horaini = substr($eventos['horaini'], 0, -3);
 							$horafin = substr($eventos['horafin'], 0, -3);
 							
+							if ($eventos['fechaini'] != $eventos['fechafin'] && ($eventos['fechaini'] == $anio.'-'.$mes.'-'.$dia0)) {
+								$hora_evento = 'Desde las '.$horaini;
+							}
+							else if ($eventos['fechaini'] != $eventos['fechafin'] && ($eventos['fechafin'] == $anio.'-'.$mes.'-'.$dia0)) {
+								$hora_evento = 'Hasta las '.$horafin;
+							}
+							else if($eventos['fechaini'] != $eventos['fechafin'] || ($eventos['fechaini'] == $eventos['fechafin'] && $eventos['horaini'] == $eventos['horafin'])) {
+								$hora_evento = 'Todo el día';
+							}
+							else {
+								$hora_evento = $horaini.' - '.$horafin;
+							}
+							
 							if ($anio.'-'.$mes.'-'.$dia0 >= $eventos['fechaini'] && $anio.'-'.$mes.'-'.$dia0 <= $eventos['fechafin']) {
-								echo '<div class="label" style="background-color: '.$calendario['color'].';" data-bs="tooltip" title="'.$eventos['descripcion'].'"><p><strong>'.$horaini.' - '.$horafin.': '.$nomasignatura.'</strong></p>'.$eventos['nombre'].'</div>';
+								echo '<div class="label" style="background-color: '.$calendario['color'].';" data-bs="tooltip" title="'.$eventos['descripcion'].'"><p><strong>'.$hora_evento.': '.$nomasignatura.'</strong></p>'.$eventos['nombre'].'</div>';
 							}
 							
 							unset($nomasignatura);
@@ -149,8 +162,21 @@ function vista_mes ($calendario, $dia, $mes, $anio, $unidad) {
 						$horaini = substr($eventos['horaini'], 0, -3);
 						$horafin = substr($eventos['horafin'], 0, -3);
 						
+						if ($eventos['fechaini'] != $eventos['fechafin'] && ($eventos['fechaini'] == $anio.'-'.$mes.'-'.$dia0)) {
+							$hora_evento = 'Desde las '.$horaini;
+						}
+						else if ($eventos['fechaini'] != $eventos['fechafin'] && ($eventos['fechafin'] == $anio.'-'.$mes.'-'.$dia0)) {
+							$hora_evento = 'Hasta las '.$horafin;
+						}
+						else if($eventos['fechaini'] != $eventos['fechafin'] || ($eventos['fechaini'] == $eventos['fechafin'] && $eventos['horaini'] == $eventos['horafin'])) {
+							$hora_evento = 'Todo el día';
+						}
+						else {
+							$hora_evento = $horaini.' - '.$horafin;
+						}
+						
 						if ($anio.'-'.$mes.'-'.$dia0 >= $eventos['fechaini'] && $anio.'-'.$mes.'-'.$dia0 <= $eventos['fechafin']) {
-							echo '<div class="label" style="background-color: '.$calendario['color'].';" data-bs="tooltip" title="'.$eventos['descripcion'].'"><p><strong>'.$horaini.' - '.$horafin.'</strong></p>'.$eventos['nombre'].'</div>';
+							echo '<div class="label" style="background-color: '.$calendario['color'].';" data-bs="tooltip" title="'.$eventos['descripcion'].'"><p><strong>'.$hora_evento.'</strong></p>'.$eventos['nombre'].'</div>';
 						}
 						
 						unset($horaini);
