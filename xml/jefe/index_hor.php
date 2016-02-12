@@ -78,7 +78,7 @@ include("../../menu.php");
 	
 	<!-- TITULO DE LA PAGINA -->
 	<div class="page-header">
-		<h2>Administraci贸n <small>Copiar datos de un profesor a otro</small></h2>
+		<h2>Administraci髇 <small>Copiar datos de un profesor a otro</small></h2>
 	</div>
 	
 	<!-- MENSAJES -->
@@ -155,11 +155,11 @@ include("../../menu.php");
 		
 		<div class="col-sm-6">
 			
-			<h3>Informaci贸n sobre las sustituciones</h3>
+			<h3>Informaci髇 sobre las sustituciones</h3>
 			
-			<p>Para copiar los datos de un profesor que se ha dado de baja al profesor que lo sustituye, es necesario en primer lugar copiar el horario de un profesor a otro en S茅neca.</p>
+			<p>Para copiar los datos de un profesor que se ha dado de baja al profesor que lo sustituye, es necesario en primer lugar copiar el horario de un profesor a otro en S閚eca.</p>
 			
-			<p>A continuaci贸n, debes actualizar los Departamentos y los Profesores en la p谩gina de Administraci贸n de la Intranet. Si ya lo has hecho, en este formulario selecciona el profesor de baja y luego el profesor que lo sustituye, y env铆a los datos.</p>
+			<p>A continuaci髇, debes actualizar los Departamentos y los Profesores en la p醙ina de Administraci髇 de la Intranet. Si ya lo has hecho, en este formulario selecciona el profesor de baja y luego el profesor que lo sustituye, y env韆 los datos.</p>
 			
 		</div>
 		
