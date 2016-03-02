@@ -526,8 +526,7 @@ else {
 	<?php if (isset($_GET['tour']) && $_GET['tour']): ?>
 
 <div class='alert alert-warning'>
-<p class='lead'><i class='fa fa-bell'></i> Informes de Tutor&iacute;a
-activos por visita de padres</p>
+<p class='lead'><i class='fa fa-bell'></i> Informes de tutoría activos</p>
 <br>
 
 <p><?php echo date('d-m-Y'); ?> <a class='alert-link'

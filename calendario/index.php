@@ -374,7 +374,7 @@ include("../menu.php"); ?>
 					</div>
 					
 					
-					<a href="#" data-toggle="modal" data-target="#modalNuevoEvento" class="btn btn-primary"><span class="fa fa-calendar-plus-o fa-fw"></span></a>
+					<a href="#" data-toggle="modal" data-target="#modalNuevoEvento" class="btn btn-primary"><span class="fa fa-calendar-plus-o fa-fw"></span> Nueva Actividad</a>
 					
 					<div class="pull-right">
 						<a href="#" onclick="javascrip:print()" class="btn btn-default"><span class="fa fa-print fa-fw"></span></a>

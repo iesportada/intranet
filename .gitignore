@@ -19,6 +19,9 @@ prueba.php
 *.sublime-workspace
 xml/primaria/*.txt
 *.txt
-php.ini
 *.old
+php.ini
 
+admin/jefatura/index_prof.php
+
+admin/jefatura/insertar_prof.php

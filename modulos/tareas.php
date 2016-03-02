@@ -1,8 +1,7 @@
 <?php defined('INTRANET_DIRECTORY') OR exit('No direct script access allowed'); ?>
 
 <div class='alert alert-warning'>
-<p class="lead"><i class='fa fa-bell'> </i> Tareas Activas por Expulsión
-o Ausencia del Alumno</p>
+<p class="lead"><i class='fa fa-bell'> </i> Informes de tareas activos</p>
 <br />
 <?php
 
@@ -64,8 +63,8 @@ while($rowcurs = mysqli_fetch_array($resultcurs))
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal">×</button>
-<h3>Informe de Tareas para <?php echo "$row1[3] $row1[2]";?></h3>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title" style="color: #333;">Informe de Tareas<br><small><?php echo "$row1[3] $row1[2]";?></small></h4>
 </div>
 <div class="modal-body"><?	
 $alumno=mysqli_query($db_con, "SELECT APELLIDOS,NOMBRE,tareas_alumnos.unidad,tareas_alumnos.GRUPO,tutor, FECHA, duracion, claveal FROM tareas_alumnos, FTUTORES

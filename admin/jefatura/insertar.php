@@ -21,11 +21,28 @@ $apellidos = $todos[1];
 $nombre = $todos[2];
 $dia = explode("-",$fecha_reg);
 $fecha2 = "$dia[2]-$dia[1]-$dia[0]";
-		$query="insert into tutoria (apellidos, nombre, tutor,unidad,observaciones,causa,accion,fecha, jefatura, prohibido, claveal) values 
-		('".$apellidos."','".$nombre."','".$tutor."','".$unidad."','".$observaciones."','".$causa."','".$accion."','".$fecha2."','1','".$prohibido."','".$clave."')";
-		 // echo $query;
+$query="insert into tutoria (apellidos, nombre, tutor,unidad,observaciones,causa,accion,fecha, jefatura, prohibido, claveal) values 
+('".$apellidos."','".$nombre."','".$tutor."','".$unidad."','".$observaciones."','".$causa."','".$accion."','".$fecha2."','1','".$prohibido."','".$clave."')";
 mysqli_query($db_con, $query);
-//echo $query."<br>";
+}
+// Mensaje al Tutor
+if($prohibido=="0") {
+$tt = mysqli_query($db_con,"select idea from departamentos where nombre like (select tutor from FTUTORES where unidad = '$unidad')");
+$tt0 = mysqli_fetch_row($tt);
+$tutor_real = $tt0[0];
+
+$asunto = "Nueva Intervención de Tutoría desde Jefatura de Estudios";
+$texto = "Jefatura de Estudios ha registrado una intervención sobre todos los alumnos de tu Tutoría. Podrás leerla en la lista de intervenciones del alumno de la página del tutor.";
+$profesor = $_SESSION['profi'];
+
+$query0="insert into mens_texto (asunto, texto, origen) values ('".$asunto."','".$texto."','".$profesor."')";
+mysqli_query($db_con, $query0);
+$id0 = mysqli_query($db_con, "select id from mens_texto where asunto = '$asunto' and texto = '$texto' and origen = '$profesor'");
+$id1 = mysqli_fetch_array($id0);
+$id = $id1[0];
+			
+$query1="insert into mens_profes (id_texto, profesor) values ('".$id."','".$tutor_real."')";
+mysqli_query($db_con, $query1);
 }
 echo '<div align="center"><div class="alert alert-success alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -52,6 +69,27 @@ echo '<div align="center"><div class="alert alert-success alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
 Los datos se han introducido correctamente.
 </div></div><br />';
+
+// Mensaje al Tutor
+if($prohibido=="0") {
+$tt = mysqli_query($db_con,"select idea from departamentos where nombre like (select tutor from FTUTORES where unidad = '$unidad')");
+$tt0 = mysqli_fetch_row($tt);
+$tutor_real = $tt0[0];
+
+$asunto = "Nueva Intervención de Tutoría desde Jefatura de Estudios";
+$texto = "Jefatura de Estudios ha registrado una intervención sobre el alumno $nombre $apellidos de tu Tutoría. Podrás leerla en la lista de intervenciones del alumno de la página del tutor.";
+$profesor = $_SESSION['profi'];
+
+$query0="insert into mens_texto (asunto, texto, origen) values ('".$asunto."','".$texto."','".$profesor."')";
+mysqli_query($db_con, $query0);
+$id0 = mysqli_query($db_con, "select id from mens_texto where asunto = '$asunto' and texto = '$texto' and origen = '$profesor'");
+$id1 = mysqli_fetch_array($id0);
+$id = $id1[0];
+			
+$query1="insert into mens_profes (id_texto, profesor) values ('".$id."','".$tutor_real."')";
+mysqli_query($db_con, $query1);
+}
+
 }
   $al0 = mysqli_query($db_con, "select distinct id, FALUMNOS.claveal, tutoria.claveal from tutoria, FALUMNOS where tutoria.apellidos=FALUMNOS.apellidos and tutoria.nombre=FALUMNOS.nombre and tutoria.unidad=FALUMNOS.unidad order by id");
   while($al1 = mysqli_fetch_array($al0))

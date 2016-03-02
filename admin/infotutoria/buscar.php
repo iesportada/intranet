@@ -40,7 +40,7 @@ include("menu.php");
 </div>
 <br>
 
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
 
 <?php
 if (isset($_GET['validar'])) {$validar = $_GET['validar'];
@@ -75,9 +75,9 @@ $extra.="&unidad=$unidad";
 $result = mysqli_query($db_con, $query) or die ("Error in query: $query. " . mysqli_error($db_con));
 
 echo "<table class='table table-striped table-bordered datatable' align='center'><thead>";
-echo "<th>Alumno </th>
+echo "<th>Alumno</th>
 <th>Curso</th>
-<Th>Cita</th><th></th></thead><tbody>";
+<th>Cita</th><th></th></thead><tbody>";
 if (mysqli_num_rows($result) > 0)
 {
 
@@ -86,8 +86,12 @@ if (mysqli_num_rows($result) > 0)
 		$validado="";
 		$validado =  $row->valido;
    echo "<tr><td nowrap style='vertical-align:middle'>";
-		$foto="";
-		$foto = "<img src='../../xml/fotos/".$row->CLAVEAL.".jpg' width='55' height='64'  />";
+		if (! file_exists('../../xml/fotos/'.$row->CLAVEAL.'.jpg')) {
+			$foto="<span class=\"fa fa-user fa-3x fa-fw\"></span>";
+		}
+		else {
+			$foto = "<img src='../../xml/fotos/".$row->CLAVEAL.".jpg' width='55' height='64'  />";
+		}
 		echo $foto."&nbsp;&nbsp;";	
    echo stripslashes($row->NOMBRE).' '.stripslashes($row->APELLIDOS).'</TD>';
   echo " <TD style='vertical-align:middle' nowrap>$row->unidad</TD>
@@ -106,7 +110,14 @@ $tuti = $row0[0];
 					else{
 				echo "<a href='buscar.php?id=$row->ID&validar=0$extra' class='btn btn-primary text-danger'><i class='fa fa-minus-circle' data-bs='tooltip'  title='Informe no validado por el Tutor' > </i> </a> 	";					
 					}
-		 }	
+		 }
+		 else {
+		 	$result_profe = mysqli_query($db_con, "SELECT materia FROM profesores WHERE profesor='".nomprofesor($_SESSION['profi'])."' and grupo = '".stripslashes($row->unidad)."'");
+		 	if (mysqli_num_rows($result_profe) && date('Y-m-d') <= $row->F_ENTREV) {
+		 		 echo "<a href='informar.php?id=$row->ID' class='btn btn-primary btn-mini'><i class='fa fa-pencil-square-o ' title='Rellenar Informe'> </i> </a>";
+		 		 
+		 	}
+		 }
 echo '</div></td></tr>';
 	}
 echo "</tbody></table><br />";

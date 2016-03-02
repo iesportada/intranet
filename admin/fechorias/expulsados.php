@@ -66,8 +66,8 @@ while( $row = mysqli_fetch_array($result));
 echo "<br /><legend align='center'>Alumnos expulsados del Centro actualmente</legend>";
   $result = mysqli_query($db_con, "select distinct FALUMNOS.apellidos, FALUMNOS.nombre, FALUMNOS.unidad,
   FALUMNOS.nc, Fechoria.expulsion, inicio, fin, id, Fechoria.claveal, tutoria from Fechoria,
-  FALUMNOS where FALUMNOS.claveal = Fechoria.claveal and expulsion > '0' and Fechoria.fin >= '$hoy'
-  and Fechoria.inicio <= '$ayer' order by Fechoria.fecha ");
+  FALUMNOS where FALUMNOS.claveal = Fechoria.claveal and expulsion > '0' and date(Fechoria.fin) >= '$hoy'
+  and date(Fechoria.inicio) <= '$hoy' order by Fechoria.fecha ");
      if ($row = mysqli_fetch_array($result))
         {
 		echo "<center><table class='table table-striped' style='width:auto'>";
