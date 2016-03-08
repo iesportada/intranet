@@ -1,14 +1,14 @@
 <?php defined('INTRANET_DIRECTORY') OR exit('No direct script access allowed');
 
 switch ($config['centro_provincia']) {
-	case 'Almería' : $web_delegacion = '436'; break;
-	case 'Cádiz' : $web_delegacion = '437'; break;
-	case 'Córdoba' : $web_delegacion = '438'; break;
-	case 'Granada' : $web_delegacion = '439'; break;
-	case 'Huelva' : $web_delegacion = '440'; break;
-	case 'Jaén' : $web_delegacion = '441'; break;
-	case 'Málaga' : $web_delegacion = '442'; break;
-	case 'Sevilla' : $web_delegacion = '443'; break;
+	case 'Almería' : $web_delegacion = 'almeria'; break;
+	case 'Cádiz' : $web_delegacion = 'cadiz'; break;
+	case 'Córdoba' : $web_delegacion = 'cordoba'; break;
+	case 'Granada' : $web_delegacion = 'granada'; break;
+	case 'Huelva' : $web_delegacion = 'huelva'; break;
+	case 'Jaén' : $web_delegacion = 'jaen'; break;
+	case 'Málaga' : $web_delegacion = 'malaga'; break;
+	case 'Sevilla' : $web_delegacion = 'sevilla'; break;
 }
 
 //	VALORES DEL MENU
@@ -573,7 +573,7 @@ if ($_SERVER['SERVER_NAME'] == 'iesmonterroso.org') {
 					'target' => '_blank',
 				),
 				array(
-					'href'   => 'http://www.mecd.gob.es',
+					'href'   => 'http://www.mecd.gob.es/portada-mecd/',
 					'titulo' => 'Ministerio de Educación',
 					'target' => '_blank',
 				),
@@ -605,7 +605,7 @@ else {
 					'target' => '_blank',
 				),
 				array(
-					'href'   => 'http://www.juntadeandalucia.es/educacion/nav/delegaciones.jsp?delegacion='.$web_delegacion,
+					'href'   => 'http://www.juntadeandalucia.es/educacion/webportal/web/delegacion-'.$web_delegacion.'/',
 					'titulo' => 'Delegación de Educación',
 					'target' => '_blank',
 				),
@@ -615,7 +615,7 @@ else {
 					'target' => '_blank',
 				),
 				array(
-					'href'   => 'http://www.mecd.gob.es',
+					'href'   => 'http://www.mecd.gob.es/portada-mecd/',
 					'titulo' => 'Ministerio de Educación',
 					'target' => '_blank',
 				),

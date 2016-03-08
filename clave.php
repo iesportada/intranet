@@ -3,7 +3,7 @@ require('bootstrap.php');
 
 
 function validarContrasena($contrasena) {
-	$result = preg_match("((?=.*\d)(?=.*[a-z])(?=.*[A-z])(?=.*[!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]).{8,12})", $contrasena);
+	$result = preg_match("((?=.*\d)(?=.*[a-z])(?=.*[A-z])(?=.*[!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]).{8,20})", $contrasena);
 	
 	return $result;
 }
@@ -119,14 +119,14 @@ include("menu.php");
 						  <div id="form-group-codigo2"  class="form-group">
 						    <label for="codigo2" class="col-sm-4 control-label">Nueva contraseña</label>
 						    <div class="col-sm-8">
-						      <input type="password" class="form-control" id="codigo2" name="codigo2" placeholder="Nueva contraseña" maxlength="12">
+						      <input type="password" class="form-control" id="codigo2" name="codigo2" placeholder="Nueva contraseña" maxlength="20">
 						    </div>
 						  </div>
 						  
 						  <div id="form-group-codigo3"  class="form-group">
 						    <label for="codigo3" class="col-sm-4 control-label">Repita la contraseña</label>
 						    <div class="col-sm-8">
-						      <input type="password" class="form-control" id="codigo3" name="codigo3" placeholder="Repita la contraseña" maxlength="12">
+						      <input type="password" class="form-control" id="codigo3" name="codigo3" placeholder="Repita la contraseña" maxlength="20">
 						    </div>
 						  </div>
 						  
@@ -160,7 +160,7 @@ include("menu.php");
 				<p>La clave debe cumplir las siguientes condiciones:</p>
 				
 				<ul class="">
-					<li>Tener al menos una longitud de 8 caracteres y 12 como máximo.</li>
+					<li>Tener al menos una longitud de 8 caracteres y 20 como máximo.</li>
 					<li>Contener al menos una letra, un número y un signo de puntuación o un símbolo.</li>
 					<li>Los símbolos aceptados son !"#$%&amp;'()*+,-./:;&raquo;=>?@[\]^_`{|}~</li>
 					<li>Las letras acentuadas y las eñes no están admitidas.</li>

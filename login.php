@@ -154,7 +154,7 @@ if (isset($_POST['submit']) and ! ($_POST['idea'] == "" or $_POST['clave'] == ""
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Intranet del <?php echo $config['centro_denominacion']; ?>">
-	<meta name="author" content="IESPortadaAlta (https://github.com/iesportada/intranet/)">
+	<meta name="author" content="IESMonterroso (https://github.com/IESMonterroso/intranet/)">
 	<meta name="robots" content="noindex, nofollow">
 	
 	<title>Intranet &middot; <?php echo $config['centro_denominacion']; ?></title>
@@ -200,7 +200,7 @@ if (isset($_POST['submit']) and ! ($_POST['idea'] == "" or $_POST['clave'] == ""
 		      
 		      <div id="form-group" class="form-group">
 		        <input type="text" class="form-control" id="idea" name="idea" placeholder="Usuario IdEA" maxlength="12" required autofocus>
-		        <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required>
+		        <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" maxlength="20" required>
 		        
 		        <?php if($msg_error): ?>
 		            <label class="control-label text-danger"><?php echo $msg_error; ?></label>
@@ -225,14 +225,14 @@ if (isset($_POST['submit']) and ! ($_POST['idea'] == "" or $_POST['clave'] == ""
 			<hr>
 			
 			<p class="text-center">
-				<small class="text-muted">Versión <?php echo INTRANET_VERSION; ?> - Copyright &copy; <?php echo date('Y'); ?> IES Portada Alta</small><br>
+				<small class="text-muted">Versión <?php echo INTRANET_VERSION; ?> - Copyright &copy; <?php echo date('Y'); ?> IESMonterroso</small><br>
 				<small class="text-muted">Este programa es software libre, liberado bajo la GNU General Public License.</small>
 			</p>
 			<p class="text-center">
 				<small>
 					<a href="//<?php echo $config['dominio']; ?>/intranet/LICENSE.md" target="_blank">Licencia de uso</a>
 					&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;&nbsp;
-					<a href="https://github.com/iesportada/intranet" target="_blank">Github</a>
+					<a href="https://github.com/IESMonterroso/intranet" target="_blank">Github</a>
 				</small>
 			</p>
 		</div>

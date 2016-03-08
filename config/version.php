@@ -7,4 +7,4 @@
 // a = Acumulativa. Solución de errores en el mismo día de la publicación de la release.
 //                  En lugar de utilizar una letra usaremos un número. P.e.: 4.1.1.1
 
-define('INTRANET_VERSION', '4.4.2');
+define('INTRANET_VERSION', '4.4.3');
