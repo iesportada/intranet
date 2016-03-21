@@ -267,7 +267,7 @@ mysqli_query($db_con,"ALTER TABLE `Fechcaduca` ADD PRIMARY KEY (`id`);");
 if($_SESSION['profi']==$row[6] or stristr($_SESSION['cargo'],'1') == TRUE or (stristr($_SESSION['cargo'],'c') == TRUE and stristr($asunto,"Biblioteca")==TRUE)){
 		$ahora = mktime();
 		$tr_f = explode("-",$fecha);
-		$antes = mktime(0,0,0,$tr_f[1],$tr_f[2],$tr_f[0])+172800;
+		$antes = mktime(0,0,0,$tr_f[1],$tr_f[2],$tr_f[0])+604800;
 		if ($ahora < $antes) {
 			echo "<A HREF='infechoria.php?id=$id&nombre=$claveal'><i class='fa fa-pencil fa-fw fa-lg' data-bs='tooltip' title='Editar'></i></A>";
 		}

@@ -190,7 +190,7 @@ echo '<div align="center"><div class="alert alert-success alert-block fade in">
 		";
 		$ahora = mktime();
 		$tr_f = explode("-",$fecha);
-		$antes = mktime(0,0,0,$tr_f[1],$tr_f[2],$tr_f[0])+172800;
+		$antes = mktime(0,0,0,$tr_f[1],$tr_f[2],$tr_f[0])+604800;
         if($_SESSION['profi']==$row[6] or stristr($_SESSION['cargo'],'1') == TRUE){
         	if ($ahora < $antes) {
         	echo "<a href='infechoria.php?id=$id&nombre=$claveal'><span class='fa fa-edit fa-fw fa-lg' data-bs='tooltip' title='Editar'></span></a>";	

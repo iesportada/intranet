@@ -25,6 +25,7 @@ $evaluacion_pendiente=$_POST["evaluacion"];
 ?>
 
 <legend class="text-info" align="center"><strong><?php echo $curso_pendiente;?></strong></legend>
+<legend class='text-warning' align="center"><?php echo $evaluacion_pendiente;?>ª Evaluación</legend>
 <table class='table table-striped table-bordered table-condensed' style="width:auto;" align='center'>
 
 <?php

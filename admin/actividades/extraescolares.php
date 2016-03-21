@@ -146,7 +146,11 @@ if (($jefes==1 OR strstr(mb_strtoupper($profes_actividad),mb_strtoupper($_SESSIO
 <button type="submit" name="submit1" value="Imprimir Carta para Padres" class="btn btn-primary hidden-print">Imprimir Carta para Padres</button>&nbsp;
 <button type="submit" name="submit2" value="Registrar Alumnos" class="btn btn-info hidden-print">Registrar Alumnos</button>&nbsp;
 <?php } ?>
+<? if ($_GET['ver_lista']==1) { ?>
 <input type="button" name="print"  class="btn btn-success hidden-print" value="Imprimir Lista de Alumnos" onclick="window.print();">
+<? } else{ ?>
+<a href="extraescolares.php?id=<? echo $_GET['id'] ?>&ver_lista=1"  class="btn btn-success hidden-print">Ver Lista de Alumnos para Imprimir</a>
+<? } ?>
 </div>
   </form>
   </div>

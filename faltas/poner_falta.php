@@ -125,7 +125,6 @@ if (!empty($_POST['profesor_ausente'])) {
 	$horas=$_POST['hora'];
 	// Registramos o actualizamos ausencia del profesor sustituído en la guardia
 	$ya = mysqli_query($db_con, "select * from ausencias where profesor = '$profesor_ausente' and date(inicio)<= date('$inicio1') and date(fin) >= date('$fin1')");
-	echo "select * from ausencias where profesor = '$profesor_ausente' and date(inicio)<= date('$inicio1') and date(fin) >= date('$fin1')";
 		if (mysqli_num_rows($ya) > '0') {
 			$ya_hay = mysqli_fetch_array($ya);
 			$horas_ya = $ya_hay['horas'];
