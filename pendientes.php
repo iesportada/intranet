@@ -48,7 +48,6 @@ if (isset($_GET['tareas_expulsion'])) {
 }
 
 $SQLcurso = "select distinct grupo, materia, nivel from profesores where profesor = '$pr'";
-//echo $SQLcurso;
 $resultcurso = mysqli_query($db_con, $SQLcurso);
 while ($exp = mysqli_fetch_array($resultcurso)) {
 	$unidad = $exp[0];
@@ -71,10 +70,10 @@ OR date(tareas_alumnos.fin) =  date_sub('$hoy', interval 7 day)
 )
 AND alma.unidad =  '$unidad'
 AND alma.combasi LIKE  '%$cod_asig[0]%' 
-and tareas_profesor.profesor='$pr' 
+and tareas_profesor.profesor='$pr'
+and tareas_profesor.asignatura='$materia' 
 and confirmado is null
 ORDER BY tareas_alumnos.fecha";
-	//echo $expul;
 	$result = mysqli_query($db_con, $expul);
 	while ($row = mysqli_fetch_array($result))
 	{
@@ -98,10 +97,9 @@ ORDER BY tareas_alumnos.fecha";
 			}
 			else{
 				$count_vuelven = 1;
-				echo "<div class='alert alert-info'><h4><i class='fa fa-warning'> </i> Alumnos que se reincorporan tras su Expulsión<br /></h4>
-	<h5>$materia</h5>";
+				echo "<div class='alert alert-info'><h4><i class='fa fa-warning'> </i> Alumnos que se reincorporan tras su Expulsión<br /></h4>";
 				echo "<p>".$row[0].", ".$row[1]." ==> ".$unidad."</p>";
-				echo "<p>¿Ha realizado el alumno las tareas que le has encomendado?&nbsp;&nbsp;&nbsp;&nbsp;<a href='index.php?tareas_expulsion=Si&id_tareas=$row[4]'><button class='btn btn-primary btn-sm'>SI</button></a>&nbsp;&nbsp;<a href='index.php?tareas_expulsion=No&id_tareas=$row[4]'><button class='btn btn-danger btn-sm'>NO</button></a></p>";
+				echo "<p>¿Ha realizado el alumno las tareas que le has encomendado en la asignatura de <b><em>$materia</em></b>?&nbsp;&nbsp;&nbsp;&nbsp;<a href='index.php?tareas_expulsion=Si&id_tareas=$row[4]'><button class='btn btn-primary btn-sm'>SI</button></a>&nbsp;&nbsp;<a href='index.php?tareas_expulsion=No&id_tareas=$row[4]'><button class='btn btn-danger btn-sm'>NO</button></a></p>";
 				echo "</div>";
 			}
 		}

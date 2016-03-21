@@ -84,6 +84,9 @@ function seleccionar_todo(){
 <button type="submit" class="btn btn-warning" name="registro" value="registro"><span class="fa fa-gavel fa-fw"></span> Registrar Amonestaciones</button>
 <a href="lpdf.php" class="btn btn-primary" target="_blank">Listado en PDF</a>
 </form>
+</div>
+</div>
+</div>
 
 <?php include("../../pie.php");?>
 	<script>

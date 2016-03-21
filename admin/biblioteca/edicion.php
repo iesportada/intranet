@@ -16,15 +16,14 @@ include("menu.php");
 
 <div class="col-sm-8 col-sm-offset-2">
 <?php
+
 if(isset($_POST['borrar'])){
-	//echo $fecha;
 	$i=0;
 	$j=0;
 	foreach ($_POST as $ide => $valor)
 	{
 		if(($ide<>'borrar') and (!empty( $valor))){
 			for($i=0; $i <= count($valor)-1; $i++){ $j+=1;
-			//echo "delete from morosos where id=$valor[$i]";
 			$bor = mysqli_query($db_con, "delete from morosos where id='$valor[$i]'") or die("No se ha podido borrar");
 			}
 
@@ -69,25 +68,23 @@ if(isset($_POST['sms'])){$sms=$_POST['sms'];}
 	foreach ($_POST as $ide => $valor) {      
 		if(($ide<>'registro') and (!empty( $valor)))
 		{ 
-?>
-
-<?php 
 $envio='';
 for($i=0; $i <= count($valor)-1; $i++)
 { 
-$j+=1; //echo $valor[$i];
-$duplicado= mysqli_query($db_con, "select amonestacion from morosos where id=$valor[$i]");
+$j+=1; 
+$duplicado= mysqli_query($db_con, "select amonestacion from morosos where id='$valor[$i]'");
 $duplicados=mysqli_fetch_array($duplicado);
 
 if($duplicados[0]=='NO'){
-	$envio='-'.$valor[$i];?> 	
-	<?php 
 
-if ($registro) {
-		$upd = mysqli_query($db_con, "update morosos set amonestacion='SI' where id=$valor[$i]") or die ("No se ha podido actualizar el registro");
+	$envio='-'.$valor[$i]; 
+
+if (isset($_POST['registro'])) {
+		$upd = mysqli_query($db_con, "update morosos set amonestacion='SI' where id='$valor[$i]'") or die ("No se ha podido actualizar el registro");
 		//localizo el alumno a travÃ©s de la id de la tabla morosos.
 	}
-	$al=mysqli_query($db_con, "select apellidos,nombre,curso from morosos where id=$valor[$i]") or die ("error al localizar alumno");
+	$al=mysqli_query($db_con, "select apellidos,nombre,curso from morosos where id='$valor[$i]'") or die ("error al localizar alumno");
+
 	while($alu=mysqli_fetch_array($al)){
 
 		$nombre=$alu[1];
@@ -101,15 +98,15 @@ if ($registro) {
 			$clave=$clav[0];// echo $clave.'---'. $dia;
 			$unidad=$clav[1]; //echo $nivel;
 			//insertamos, por fÃ­n, la fechorÃ­a
-if ($registro) {
+if (isset($_POST['registro'])) {
 				$fechoria = mysqli_query($db_con,  "insert into Fechoria (CLAVEAL,FECHA,ASUNTO,NOTAS,INFORMA,grave,medida,expulsionaula,enviado,recibido) values ('" . $clave . "','" . $dia . "','" . $asunto . "','" . $asunto . "','" . $informa . "','" . $grave . "','" . $medida . "','" . $expulsionaula . "','" . $enviado . "','" . $recibido . "')") or die ("error al registrar fechoría");
 				//ahora registramos la intervencion en la tabla tutorÃ­a, debido al tema de los SMS
 				$tutoria=mysqli_query($db_con, "insert into tutoria (apellidos, nombre, tutor,unidad,observaciones,causa,accion,fecha, claveal,jefatura) values ('" . $apellido . "','" . $nombre . "','" . $informa . "','" . $unidad . "','" . $asunto . "','" . $causa . "','" . $accion . "','" . $dia . "','" . $clave . "','" . $recibido . "')" ) or die ("error al registrar accion en tabla tutoria");
 			}
-if ($sms) {
-		mysqli_query($db_con, "update morosos set sms='SI' where id=$valor[$i]") or die ("No se ha podido actualizar el registro SMS");
+if (isset($_POST['sms'])) {
+		mysqli_query($db_con, "update morosos set sms='SI' where id='$valor[$i]'") or die ("No se ha podido actualizar el registro SMS");
 	}
-			$alumno = mysqli_query($db_con, " SELECT distinct APELLIDOS, NOMBRE, unidad, CLAVEAL, alma.TELEFONO, alma.TELEFONOURGENCIA FROM alma WHERE claveal = '$clave'" );
+			$alumno = mysqli_query($db_con, " SELECT distinct APELLIDOS, NOMBRE, unidad, CLAVEAL, TELEFONO, TELEFONOURGENCIA FROM alma WHERE claveal = '$clave'" );
 			$rowa = mysqli_fetch_array ( $alumno );
 			$apellidos = trim ( $rowa [0] );
 			$nombre = trim ( $rowa [1] );
@@ -179,15 +176,17 @@ if (isset($_POST['registro'])) {
 			<legend>ATENCI&Oacute;N:</legend>
 La amonestación se ha registrado con &eacute;xito. Los tutores de los alumnos recibirán el mensaje del problema de convivencia registrado y procederán a imprimir y entregar en Jefatura el impreso para los padres.
 	</div></div><br />';
+	echo "<div align='center'><a href='consulta.php' class='btn btn-default'>Volver a la Consulta de Préstamos</a></div>";
 }
 elseif(isset($_POST['sms'])){
 	echo '<div align="center"><div class="alert alert-success alert-block fade in">
  <button type="button" class="close" data-dismiss="alert">&times;</button>
 			<legend>ATENCI&Oacute;N:</legend>
-Los mensajes SMS de aviso por retraso en la devolución de ejemplares de la Biblioteca han sido enviados correctamente (si en la pequeña ventana del navegador que aparece en la parte superior izquierda dice <b>OK</b>).
+Los mensajes SMS de aviso por retraso en la devolución de ejemplares de la Biblioteca han sido enviados correctamente.
 	</div></div><br /></div>
 </div>
 </div>';
+echo "<div align='center'><a href='consulta.php' class='btn btn-default'>Volver a la Consulta de Préstamos</a></div>";
 }
 ?>
 </div>
