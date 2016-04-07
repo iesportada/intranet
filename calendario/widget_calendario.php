@@ -202,7 +202,7 @@ while ($calendario = mysqli_fetch_assoc($result_calendarios)) {
 			else $hora_evento = "Todo el día";
 			
 			if ($calendario['id'] == 2):
-				$result_actividad = mysqli_query($db_con, "SELECT cod_actividad FROM `actividadalumno` WHERE cod_actividad = (SELECT id FROM calendario WHERE nombre = '".$eventos['nombre']."')  LIMIT 1");
+				$result_actividad = mysqli_query($db_con, "SELECT cod_actividad FROM `actividadalumno` WHERE cod_actividad = '".$eventos['id']."' LIMIT 1");
 					
 				if (mysqli_num_rows($result_actividad)):
 					

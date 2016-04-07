@@ -621,3 +621,17 @@ while($hor_profe0 = mysqli_fetch_array($hor0)){
 mysqli_query($db_con,"delete from profesores where nivel='' or grupo=''");
 mysqli_query($db_con, "INSERT INTO actualizacion (modulo, fecha) VALUES ('Estructura tabla profesores_seneca', NOW())"); 
 }
+
+/*
+ @descripcion: Campo Observacioenes en tabla de Ausencias del Profesor.
+ @fecha: 31 de Mayo de 2016
+ */
+$actua = mysqli_query($db_con, "SELECT modulo FROM actualizacion WHERE modulo = 'Observaciones en Ausencias del profesor'");
+if (! mysqli_num_rows($actua)) {
+	
+	mysqli_query($db_con, "INSERT INTO actualizacion (modulo, fecha) VALUES ('Observaciones en Ausencias del profesor', NOW())");
+
+	mysqli_query($db_con, "ALTER TABLE  `ausencias` ADD  `Observaciones` TEXT NULL");
+}
+
+

@@ -180,7 +180,7 @@ while ($asi = mysqli_fetch_array($as)) {
 	$num_susp = mysqli_num_rows($cod_nota);
 	$num_apro='';
 	$num_apro = mysqli_num_rows($cod_apro);
-	$combas = mysqli_query($db_con, "select claveal from alma where combasi like '%$codasi%' and curso = '$orden_nivel[0]'");
+	$combas = mysqli_query($db_con, "select distinct temp.claveal from temp where claveal in (select claveal1 from alma where combasi like '%$codasi%' and curso = '$orden_nivel[0]')");
 	$num_matr='';
 	$num_matr = mysqli_num_rows($combas);
 	

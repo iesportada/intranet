@@ -6,6 +6,7 @@ if (isset($_GET['submit2'])) {$submit2 = $_GET['submit2'];}elseif (isset($_POST[
 if (isset($_GET['inicio'])) {$inicio = $_GET['inicio'];}elseif (isset($_POST['inicio'])) {$inicio = $_POST['inicio'];}else{$inicio="";}
 if (isset($_GET['fin'])) {$fin = $_GET['fin'];}elseif (isset($_POST['fin'])) {$fin = $_POST['fin'];}else{$fin="";}
 if (isset($_GET['profesor'])) {$profesor = $_GET['profesor'];}elseif (isset($_POST['profesor'])) {$profesor = $_POST['profesor'];}else{$profesor="";}
+if (isset($_GET['observaciones'])) {$observaciones = $_GET['observaciones'];}elseif (isset($_POST['observaciones'])) {$observaciones = $_POST['observaciones'];}else{$observaciones="";}
 if (isset($_GET['tareas'])) {$tareas = $_GET['tareas'];}elseif (isset($_POST['tareas'])) {$tareas = $_POST['tareas'];}else{$tareas="";}
 if (isset($_GET['horas'])) {$horas = $_GET['horas'];}elseif (isset($_POST['horas'])) {$horas = $_POST['horas'];}else{$horas="";}
 if (isset($_GET['id'])) {$id = $_GET['id'];}elseif (isset($_POST['id'])) {$id = $_POST['id'];}else{$id="";}
@@ -88,10 +89,10 @@ if (isset($_POST['submit2'])) {
 	}
 	// Comprobamos datos enviados
 	if ($profesor and $inicio and $fin) {
-		$ya = mysqli_query($db_con, "select * from ausencias where profesor = '$profesor' and inicio = '$inicio1' and fin = '$fin1'");
+		$ya = mysqli_query($db_con, "select * from ausencias where profesor = '$profesor' and inicio = '$inicio1' and fin = '$fin1' and observaciones = '$observaciones'");
 		if (mysqli_num_rows($ya) > '0') {
 			$ya_hay = mysqli_fetch_array($ya);
-			$actualiza = mysqli_query($db_con, "update ausencias set tareas = '$tareas', horas = '$horas' where id = '$ya_hay[0]'");
+			$actualiza = mysqli_query($db_con, "update ausencias set tareas = '$tareas', horas = '$horas', observaciones = '$observaciones' where id = '$ya_hay[0]'");
 			echo '<div align="center"><div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
 Los datos se han actualizado correctamente.
@@ -117,7 +118,7 @@ Los datos se han actualizado correctamente.
           </div>';
 				}
 				}
-				$inserta = mysqli_query($db_con, "insert into ausencias VALUES ('', '$profesor', '$inicio1', '$fin1', '$horas', '$tareas', NOW(), '$nombre_archivo')");
+				$inserta = mysqli_query($db_con, "insert into ausencias VALUES ('', '$profesor', '$inicio1', '$fin1', '$horas', '$tareas', NOW(), '$nombre_archivo', '$observaciones')");
 				echo '<div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
 Los datos se han registrado correctamente.
@@ -239,7 +240,12 @@ No se pueden procesar los datos. Has dejado campos vacíos en el formulario que e
 				}
 				?>
 				</div>
-				
+				<div class="form-group">
+					<label for="observaciones">Tipo y/o Razón de la Ausencia.</label>
+					<textarea class="form-control" id="observaciones" name="observaciones" rows="6" placeholder="ATENCIÓN: La información registrada en este campo sólo es visible para el Equipo Directivo."><?php echo $observaciones;?></textarea>
+				</div>
+
+
 				<div class="form-group">
 					<label for="tareas">Tareas para los alumnos</label>
 					<textarea class="form-control" id="tareas" name="tareas" rows="6"></textarea>
@@ -316,7 +322,7 @@ No se pueden procesar los datos. Has dejado campos vacíos en el formulario que e
 	<?php if (isset($pra) && !empty($pra)): ?>
 	<div class="row">
 		
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<?php $exp_profesor = explode(", ", $pra); ?>
 			<?php $nomprof = $exp_profesor[1].' '.$exp_profesor[0]; ?>
 			
@@ -332,17 +338,18 @@ No se pueden procesar los datos. Has dejado campos vacíos en el formulario que e
 							<th>Horas</th>
 							<th>Tareas</th>
 							<?php if(stristr($_SESSION['cargo'],'1') == TRUE): ?>
+							<th>Observaciones</th>
 							<th>&nbsp;</th>
 							<?php endif; ?>
 						</tr>
 					</thead>
 					<tbody>
-						<?php $result = mysqli_query($db_con, "SELECT inicio, fin, tareas, id, profesor, horas, archivo FROM ausencias WHERE profesor = '$pra' ORDER BY fin ASC"); ?>
+						<?php $result = mysqli_query($db_con, "SELECT inicio, fin, tareas, id, profesor, horas, archivo, observaciones FROM ausencias WHERE profesor = '$pra' ORDER BY fin ASC"); ?>
 						<?php while ($row = mysqli_fetch_array($result)): ?>
 						<tr>
 							<td nowrap><?php echo $row['inicio']; ?></td>
 							<td nowrap><?php echo $row['fin']; ?></td>
-							<td>
+							<td nowrap>
 							<?php if ($row['horas'] != '0') { 
 							$hr = str_split($row['horas']);
 							foreach ($hr as $hora){
@@ -351,14 +358,17 @@ No se pueden procesar los datos. Has dejado campos vacíos en el formulario que e
 							}; ?>
 							</td>
 							<td>
-							<?php echo (strlen($row['tareas']) > 0 or strlen($row['archivo'])>0) ? 'Sí' : 'No'; ?>
+							<?php echo (strlen($row['tareas']) > 0 or strlen($row['archivo'])>0) ? $row['tareas'] : 'No'; ?>
 							<?php
 							if(strlen($row['archivo'])>0){
-							echo "&nbsp;&nbsp;<a href='archivos/".$row['archivo']."'><i class='fa fa-file'> </i>";
+							echo "<hr><span class='text-warning'>Archivo adjunto con las Tareas: </span><a href='archivos/".$row['archivo']."'><i class='fa fa-file fa-lg' data-bs='tooltip' title='Archivo adjunto con las tareas del profesor'> </i>";
 							echo '</a>';
 							}?>
 							</td>
 							<?php if(stristr($_SESSION['cargo'],'1') == TRUE): ?>
+							<td>
+							<?php echo $row['observaciones']; ?>	
+							</td>
 							<td>
 								<a href="index.php?borrar=1&id=<?php echo $row['id']; ?>&profesor=<?php echo $profesor; ?>" data-bb='confirm-delete'>
 									<span class="fa fa-trash-o fa-fw fa-lg" data-bs="tooltip" title="Borrar"></span>
@@ -377,7 +387,7 @@ No se pueden procesar los datos. Has dejado campos vacíos en el formulario que e
 	<?php endif; ?>
 	
 </div><!-- /.container -->
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <?php include("../../pie.php"); ?> 
 <?php 
 $exp_inicio_curso = explode('-', $config['curso_inicio']);

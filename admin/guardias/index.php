@@ -16,7 +16,7 @@ if (isset($_GET['historico'])) {$historico = $_GET['historico'];}elseif (isset($
 
 if ($n_dia == '1') {$nombre_dia = 'Lunes';}
 if ($n_dia == '2') {$nombre_dia = 'Martes';}
-if ($n_dia == '3') {$nombre_dia = 'Miércoles';}
+if ($n_dia == '3') {$nombre_dia = 'MiÃ©rcoles';}
 if ($n_dia == '4') {$nombre_dia = 'Jueves';}
 if ($n_dia == '5') {$nombre_dia = 'Viernes';}
 $mes=date('m');
@@ -41,7 +41,7 @@ if ($n_dia > $numerodiasemana) {
  	$g_dia = date('d');
  }
  	$g_fecha = date("Y-m-$g_dia");
- 	$fecha_sp = formatea_fecha($g_fecha);
+ 	$fecha_sp = formatDate($g_fecha);
 ?>
 <div class="container">
 <div class="row">
@@ -63,17 +63,17 @@ if ($n_dia > $numerodiasemana) {
 						<h4 class="modal-title" id="modal_ayuda_titulo">Instrucciones de uso</h4>
 					</div>
 					<div class="modal-body">
-						<p>Este módulo permite registrar las sustituciones de profesores ausentes que hemos 
-						hecho en su aula (guardias de aula). Aparece de entrada el número de sustituciones 
+						<p>Este mÃ³dulo permite registrar las sustituciones de profesores ausentes que hemos 
+						hecho en su aula (guardias de aula). Aparece de entrada el nÃºmero de sustituciones 
 						de todos los miembros del Equipo de Guardia. Si hacemos click sobre el nombre de un 
-						Compañero de guardia aparecen en la parte inferior de la página las sustituciones que 
-						ha realizado ese profesor. Hay que tener en cuenta que en la selección de profesores 
-						a sustituir sólo aparecen los profesores que tienen hora lectiva en ese momento 
-						según el horario importado en la Intranet.</p>
-						<p>Al registrar una sustitución cualquier compañero de la Guardia, aparece señalada 
-						en la parte superior de la página de tal modo que todos los compañeros puedan ver 
-						quién ha sustituido a quien en un aula durante esa hora.</p>
-						<p>Las sustituciones sólo pueden registrarse hasta dos días después de realizarse. 
+						CompaÃ±ero de guardia aparecen en la parte inferior de la pÃ¡gina las sustituciones que 
+						ha realizado ese profesor. Hay que tener en cuenta que en la selecciÃ³n de profesores 
+						a sustituir sÃ³lo aparecen los profesores que tienen hora lectiva en ese momento 
+						segÃºn el horario importado en la Intranet.</p>
+						<p>Al registrar una sustituciÃ³n cualquier compaÃ±ero de la Guardia, aparece seÃ±alada 
+						en la parte superior de la pÃ¡gina de tal modo que todos los compaÃ±eros puedan ver 
+						quiÃ©n ha sustituido a quien en un aula durante esa hora.</p>
+						<p>Las sustituciones sÃ³lo pueden registrarse hasta dos dÃ­as despuÃ©s de realizarse. 
 						Si nos olvidamos de hacerlo, tendremos que pedir al Equipo Directivo que nos la 
 						registren.</p>
 					</div>
@@ -89,7 +89,7 @@ if ($borrar=='1') {
 	mysqli_query($db_con, "delete from guardias where id='".$_GET['id']."'");
 	echo '<div align="center"><div class="alert alert-success alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-La sustitución ha sido borrada correctamente.
+La sustituciÃ³n ha sido borrada correctamente.
 </div></div>';
 }
 
@@ -100,8 +100,8 @@ if ($submit) {
 					if (isset($dif2) and $dif2 > '1') {
 						echo '<div align="center"><div class="alert alert-warning alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-			<legend>ATENCIÓN:</legend>
-Estáss intentando registrar una sustitución con dos días o más de diferencia respecto a la fecha de la Guardia, y eso no es posible. Si por motivo justificado necesitas hacerlo, ponte en contacto con algún miembro del Equipo Directivo.
+			<legend>ATENCIÃ“N:</legend>
+EstÃ¡s intentando registrar una sustituciÃ³n con dos dÃ­as o mÃ¡s de diferencia respecto a la fecha de la Guardia, y eso no es posible. Si por motivo justificado necesitas hacerlo, ponte en contacto con algÃºn miembro del Equipo Directivo.
 </div></div><br>';
 
  	}
@@ -136,8 +136,8 @@ Has actualizado correctamente los datos del Profesor que sustituyes.
 		$fecha_reg = $fecha_reg0[0];
 		echo '<div align="center"><div class="alert alert-warning alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-			<legend>ATENCIÓN:</legend>'.
-$sustituido .'ya ha sido sustituido a la '.$hora.' hora el día '.$fecha_reg.'. Selecciona otro profesor y continúa.
+			<legend>ATENCIÃ“N:</legend>'.
+$sustituido .'ya ha sido sustituido a la '.$hora.' hora el dÃ­a '.$fecha_reg.'. Selecciona otro profesor y continÃºa.
 </div></div><br>';
 			}	
 			else{
@@ -176,14 +176,14 @@ Has registrado correctamente a '.$sustituido.' a '.$hora.' hora para sustituirle
 else{
 	echo '<div align="center"><div class="alert alert-danger alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-			<legend>ATENCIÓN“N:</legend>
-No has seleccionado a ningún profesor para sustituir. Elige uno de la lista desplegable para registrar esta hora.
+			<legend>ATENCIÃ“Nâ€œN:</legend>
+No has seleccionado a ningÃºn profesor para sustituir. Elige uno de la lista desplegable para registrar esta hora.
 </div></div><br>';
 }
 }	
 ?>
 <div class="col-md-8 col-md-offset-2">
-  <legend class="text-info" align="center"><? echo $nombre_dia.", ".$fecha_sp.", $hora"."ª hora";?></legend>
+  <legend class="text-info" align="center"><? echo $nombre_dia.", ".$fecha_sp.", $hora"."Âª hora";?></legend>
 
 <?
 $fech_hoy = date("Y-m-d");
@@ -199,7 +199,7 @@ if (mysqli_num_rows($hoy0) > 0) {
 	echo "</table></div>";
 }
 ?>
-<p class='lead text-warning'>Sustituciones realizadas durante la <? echo "<span style=''>".$hora."ª</span>";?> hora del <? echo "<span style=''>$nombre_dia</span>";?></p>
+<p class='lead text-warning'>Sustituciones realizadas durante la <? echo "<span style=''>".$hora."Âª</span>";?> hora del <? echo "<span style=''>$nombre_dia</span>";?></p>
 <div class="row">
 <div class="col-sm-6">
 <?
@@ -237,7 +237,7 @@ while ($sust = mysqli_fetch_array($sust0)) {
 <input type="hidden" name="profeso" value="<? echo $profeso;?>">
 <input type="hidden" name="n_dia" value="<? echo $n_dia;?>">
 <input type="hidden" name="hora" value="<? echo $hora;?>">
-<input type="submit" name="submit" class="btn btn-primary btn-block" value="Registrar sustitución del Profesor" />
+<input type="submit" name="submit" class="btn btn-primary btn-block" value="Registrar sustituciÃ³n del Profesor" />
 </form>
 </div>
 </div>
@@ -251,7 +251,7 @@ if ($historico == '1') {
 	}
 	else{
 		$extra = " and hora = '$hora' and dia = '$n_dia'";
-		$extra1 = " a ".$hora."ª hora del ".$nombre_dia;		
+		$extra1 = " a ".$hora."Âª hora del ".$nombre_dia;		
 	}
 	echo '<br><a name="marca"></a>';
 $h_hoy0 = mysqli_query($db_con, "select id, profesor, profe_aula, hora, fecha_guardia from guardias where profesor = '$h_profe' $extra");

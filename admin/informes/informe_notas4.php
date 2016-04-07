@@ -189,7 +189,7 @@ while ($a_asig = mysqli_fetch_array($query_asig)) {
 	$num_apro='';
 	$num_apro = mysqli_num_rows($cod_apro);
 	
-	$combas = mysqli_query($db_con, "select claveal from alma where combasi like '%$codasi%' and unidad = '$unidad'");
+	$combas = mysqli_query($db_con, "select distinct temp2.claveal from temp2 where claveal in (select claveal1 from alma where combasi like '%$codasi%' and unidad = '$unidad')");
 	//echo "select claveal from alma where combasi like '%$codasi%' and unidad = '$unidad'<br>";
 	$num_matr='';
 	$num_matr = mysqli_num_rows($combas);

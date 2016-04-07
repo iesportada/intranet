@@ -132,7 +132,7 @@ $month = (isset($month)) ? $month : date("n",time());
 $year = (isset($year)) ? $year : date("Y",time());
 $today = (isset($today))? $today : date("j", time());
 $daylong = date("l",mktime(1,1,1,$month,$today,$year));
-$monthlong = date("F",mktime(1,1,1,$month,$today,$year));
+$monthlong = date("F",mktime(1,1,1,$month,1,$year));
 $dayone = date("w",mktime(1,1,1,$month,1,$year))-1;
 $numdays = date("t",mktime(1,1,1,$month,1,$year));
 $alldays = array('Lun','Mar','Mié','Jue','Vie','Sáb','Dom');
@@ -216,7 +216,8 @@ correctamente.</div>
 
 <div class="row">
 
-<div class="col-sm-5"><?php
+<div class="col-sm-5">
+<?php
 $mes_sig = $month+1;
 $mes_ant = $month-1;
 $ano_ant = $ano_sig = $year;
