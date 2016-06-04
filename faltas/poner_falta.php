@@ -139,8 +139,7 @@ Los datos de la ausencia de '.$profesor_ausente.' se han actualizado correctamen
 			}
 			}
 			else{
-			$inserta = mysqli_query($db_con, "insert into ausencias VALUES ('', '$profesor_ausente', '$inicio1', '$fin1', '$horas', '', NOW(), '')");
-			echo "insert into ausencias VALUES ('', '$profesor_ausente', '$inicio1', '$fin1', '$horas', '', NOW(), '')";
+			$inserta = mysqli_query($db_con, "insert into ausencias VALUES ('', '$profesor_ausente', '$inicio1', '$fin1', '$horas', '', NOW(), '', '')");
 				echo '<div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
 Se ha registrado la ausencia del profesor '.$profesor_ausente.'.

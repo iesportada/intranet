@@ -508,7 +508,7 @@ $num_comunica = $num_comunica1 + $num_comunica2 + $num_comunica3;
 } 
 ?>
 </div>
-<?
+<?php
 }
 }
 ?>
@@ -841,7 +841,7 @@ mysqli_query($db_con, "drop table fech_temp");
 } 
 ?>
 </div>
-<?
+<?php
 }
 ?>
  </div>
@@ -939,7 +939,7 @@ while ($total = mysqli_fetch_array($tot)){
 
 
 </div>
-<?
+<?php
 }
 }
 ?>

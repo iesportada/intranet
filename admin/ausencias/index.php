@@ -89,7 +89,7 @@ if (isset($_POST['submit2'])) {
 	}
 	// Comprobamos datos enviados
 	if ($profesor and $inicio and $fin) {
-		$ya = mysqli_query($db_con, "select * from ausencias where profesor = '$profesor' and inicio = '$inicio1' and fin = '$fin1' and observaciones = '$observaciones'");
+		$ya = mysqli_query($db_con, "select * from ausencias where profesor = '$profesor' and inicio = '$inicio1' and fin = '$fin1'");
 		if (mysqli_num_rows($ya) > '0') {
 			$ya_hay = mysqli_fetch_array($ya);
 			$actualiza = mysqli_query($db_con, "update ausencias set tareas = '$tareas', horas = '$horas', observaciones = '$observaciones' where id = '$ya_hay[0]'");

@@ -168,7 +168,7 @@ while ($ni = mysqli_fetch_array($niv)) {
 	<?php
 $sql = "select distinct asignaturas.nombre, asignaturas.codigo from asignaturas, profesores where profesores.materia = asignaturas.nombre
  and asignaturas.curso = '$orden_nivel[0]' and profesores.grupo = '$unidad' and abrev not like '%\_%' and asignaturas.codigo not in 
-(select distinct asignaturas.codigo from asignaturas where asignaturas.nombre like 'Libre Disp%')";
+(select distinct asignaturas.codigo from asignaturas where asignaturas.nombre like 'Refuerz%')";
 //echo $sql;	
 $as = mysqli_query($db_con, $sql);
 while ($asi = mysqli_fetch_array($as)) {

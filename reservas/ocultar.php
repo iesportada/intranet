@@ -46,7 +46,7 @@ if (isset($_POST['nueva'])) {
 <p><?php echo $msg;?><p>
 </div>
 
-	<?
+	<?php
 }
 if (isset($_POST['enviar'])) {
 	$num = count($_POST);
@@ -65,7 +65,7 @@ seleccionadas dejarán de aparecer en el sistema de reservas a partir de
 ahora.<P>
 </div>
 
-	<?
+	<?php
 }
 if (isset($_GET['eliminar'])) {
 	$id = $_GET['id'];
@@ -79,7 +79,7 @@ if (isset($_GET['eliminar'])) {
 <p><?php echo $msg;?><P>
 </div>
 
-	<?
+	<?php
 }
 
 if (isset($_GET['editar'])) {
@@ -199,7 +199,7 @@ reservas.</p>
 if ($id) {
 	?> <input type="hidden" name="id" value="<?php echo $id;?>"> <input
 	class="btn btn-default" type="submit" name="nueva"
-	value="Actualizar datos del Aula / Dependencia" /> <?
+	value="Actualizar datos del Aula / Dependencia" /> <?php
 }
 else{
 	?> <input class="btn btn-default" type="submit" name="nueva"

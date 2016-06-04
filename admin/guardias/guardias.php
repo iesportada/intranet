@@ -94,7 +94,22 @@ $sustituido.' ya ha sido sustituido a la '.$hora.'ª hora el día '.$fecha_reg.'. 
           </div></div>';
 exit();
 			}
-		if (!($c1 > '0')) {				 	
+		if (!($c1 > '0')) {	
+
+		$ya = mysqli_query($db_con, "select * from ausencias where profesor = '$sustituido' and date(inicio) <= date('$g_fecha') and date(fin) >= ('$g_fecha')");
+			
+		if (mysqli_num_rows($ya) > '0') {
+			$ausencia_ya = mysqli_fetch_array($ya);
+			$horas = $ausencia_ya[4];
+			if ($horas!=="0" and $horas!=="" and strstr($horas, $hora)==FALSE) {
+				$horas=$horas.$hora;	
+				$actualiza = mysqli_query($db_con, "update ausencias set horas = '$horas' where id = '$ausencia_ya[0]'");									
+				}
+			}
+		else{
+			$inserta = mysqli_query($db_con, "insert into ausencias VALUES ('', '$sustituido', '$g_fecha', '$g_fecha', '$hora', '', NOW(), '', '')");	
+		}
+
 			$r_profe = mb_strtoupper($profeso, "ISO-8859-1");
 			mysqli_query($db_con, "insert into guardias (profesor, profe_aula, dia, hora, fecha, fecha_guardia) VALUES ('$r_profe', '$sustituido', '$n_dia', '$hora', NOW(), '$g_fecha')");
 			

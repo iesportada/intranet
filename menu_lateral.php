@@ -367,7 +367,13 @@ $menu = array(
 						'target' => '_blank',
 					),
 					array(
-						'href'   => 'admin/faltas/ccursos.php',
+						'href'   => 'admin/cursos/horariofaltas.php?horario_profesor=1',
+		                                'titulo' => 'Horario de Faltas del Profesor',
+		                                'ncargos' => array('1'),
+		                                'target' => '_blank',
+		                        ),
+		                        array(
+                                                'href'   => 'admin/cursos/ccursos.php',
 						'titulo' => 'Partes de Faltas de Grupo',
 						'cargos' => array('2'),
 					),

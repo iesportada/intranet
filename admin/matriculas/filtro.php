@@ -1,4 +1,4 @@
-<?
+<?php
 foreach($_POST as $val)
 {
 if (strlen($val)>0) {

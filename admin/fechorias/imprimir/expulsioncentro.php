@@ -92,12 +92,6 @@ $fecha_fin = "$fechaesp1[2]-$fechaesp1[1]-$fechaesp1[0]";
 $inicio1 = formatea_fecha ( $fecha );
 $fin1 = formatea_fecha ( $fecha_fin );
 
-
-$repe = mysqli_query($db_con, "select * from tareas_alumnos where claveal = '$claveal' and fecha = '$fecha'" );
-if (mysqli_num_rows ( $repe ) == "0") {
-	 mysqli_query($db_con, "INSERT into tareas_alumnos (CLAVEAL,APELLIDOS,NOMBRE,unidad,FECHA,DURACION,PROFESOR,FIN) VALUES ('$claveal','$apellidos','$nombre','$unidad', '$fecha','$expulsion','$tutor','$fecha_fin')" ) or die ( "Error, no se ha podido activar el informe:" . mysqli_error($db_con) );
-} 
-
 $titulo = "Comunicación de expulsión del centro";
 $cuerpo = "El Director del ".$config['centro_denominacion']." de ".$config['centro_localidad'].", en virtud de las facultades otorgadas por el Plan de Convivencia del Centro, regulado por el Decreto 327/2010 de 13 de Julio en el que se aprueba el Reglamento Orgánico de los Institutos de Educación Secundaria, una vez estudiado el expediente disciplinario de $nombre $apellidos, alumno/a del grupo $unidad.
 
@@ -244,7 +238,7 @@ $MiPDF->Multicell ( 0, 4, $dato, 0, 'J', 0 );
 }
 
 // RECIBI
-$txt_recibi = "D./Dña. $nombre $apellidos, alumno/a del grupo $unidad, he recibido la $titulo con referencia Fec/".$idfec." registrado el ".strftime("%e de %B de %Y", strtotime($fecha)).".";
+$txt_recibi = "D./Dña. $nombre $apellidos, alumno/a del grupo ".$unidad.", he recibido la $titulo con referencia Fec/".$idfec." registrado el ".strftime("%e de %B de %Y", strtotime($fecha)).".";
 
 $MiPDF->Ln(8);
 $MiPDF->Line(25, $MiPDF->GetY(), 190, $MiPDF->GetY());

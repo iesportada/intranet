@@ -6,8 +6,14 @@ $pdf =& new Cezpdf('a4','landscape');
 $pdf->selectFont('../../pdf/fonts/Helvetica.afm');
 $pdf->ezSetCmMargins(1,1,1.5,1.5);
 
+if (isset($_GET['horario_profesor'])) {
+	$extra = "where prof = '".$_SESSION['profi']."'";
+}
+else{
+	$extra = "order by prof";
+}
 // Días de la semana 
-$profe1 = mysqli_query($db_con, "SELECT distinct prof, no_prof from horw_faltas order by prof");
+$profe1 = mysqli_query($db_con, "SELECT distinct prof, no_prof from horw_faltas $extra");
 while($profe2 = mysqli_fetch_array($profe1))
 {
 unset($datos);
@@ -76,4 +82,5 @@ $pdf->ezTable($datos, $titles, $title=$profes, $options);
 $pdf->ezNewPage();
 }
 $pdf->ezStream(); 
+
 ?>

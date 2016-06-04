@@ -1,4 +1,4 @@
-<?
+<?php
 ini_set("session.cookie_lifetime",1800);
 ini_set("session.gc_maxlifetime",1800);
 
@@ -203,7 +203,7 @@ if (isset($_POST['sin_matricula'])) {
 
 ?>
 
-<?
+<?php
 include("../../menu.php");
 include("./menu.php");
 
@@ -224,7 +224,7 @@ foreach($_GET as $key_get => $val_get)
 </div>
 <br>
 
-<?
+<?php
 echo '<div  class="hdden-print">';
 include 'filtro.php';
 echo "</div>";
@@ -369,7 +369,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		<th>Curso</th>
 		<th>Gr1</th>
 		<th>Gr2</th>
-		<?
+		<?php
 		if ($curso=="1ESO") {
 			echo '<th>Colegio</th>';
 		}
@@ -398,7 +398,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		?>
 
 		<th class="hdden-print">Opciones</th>
-		<?
+		<?php
 		if ($n_curso>1) {
 			echo '<th class="hdden-print">SI |PIL |NO </th>';
 		}
@@ -410,7 +410,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		<th class="hdden-print">Otros</th>
 	</thead>
 	<tbody>
-	<?
+	<?php
 	while($consul = mysqli_fetch_array($cons)){
 		$backup="";
 		$respaldo='1';
@@ -689,7 +689,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		}
 		echo "</div></form>";
 		?>
-		<?
+		<?php
 		if ($curso) {
 
 			if ($curso=="1ESO" OR $curso=="2ESO"){
@@ -730,7 +730,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		<table class="table table-striped table-bordered" align="center"
 			style="width: auto">
 			<tr>
-			<?
+			<?php
 			echo "<th>Religión</th>";
 			if ($curso=="1ESO" OR $curso=="2ESO"){
 				echo "<th>Exención</th>";
@@ -761,7 +761,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 			?>
 			</tr>
 			<tr>
-			<?
+			<?php
 			echo "<td>$num_rel</td>";
 			if ($curso=="1ESO" OR $curso=="2ESO"){
 				echo "<td>$num_exen</td>";
@@ -785,7 +785,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		?>
 			</tr>
 		</table>
-		<?
+		<?php
 	}
 	?>
 
@@ -793,7 +793,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 		<table class="table table-striped table-bordered hdden-print"
 			align="center" style="width: auto">
 			<tr>
-				<td><?
+				<td><?php
 				if ($curso=="4ESO") {
 
 					for ($i=1;$i<$num_opt;$i++){
@@ -819,7 +819,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 				?></td>
 			</tr>
 		</table>
-		<?
+		<?php
 		if ($n_curso<3){
 			echo '<table class="table table-striped table-bordered hdden-print" align="center" style="width:auto"><tr>
 <td>';
@@ -869,7 +869,7 @@ No hay alumnos que se ajusten a ese criterio. Prueba de nuevo.
 			 document.form2.promocion.disabled = false;  
 			}
   </script>
-  <?
+  <?php
   // Control del envío de datos
 
   if (($mes_submit>5 and $mes_submit<9)) {
@@ -885,7 +885,7 @@ return false;
 	}
 }
 </script>
-<?
+<?php
   }
   elseif ($mes_submit=="9") {
   	?>
@@ -900,7 +900,7 @@ return false;
 	}
 }
 </script>
-		<?
+		<?php
   	  }
   
   ?>

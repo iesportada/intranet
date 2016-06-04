@@ -159,7 +159,7 @@ function seleccionar_todo<?php echo "_".$zz;?>(){
 			document.marcar_falta<?php echo "_".$zz;?>.elements[i].checked=1
 }
 </script>
-					<?
+					<?php
 					echo "</td>";
 					$result_found = 1;
 				}

@@ -901,7 +901,7 @@ exit();
 			<div class="radio"><label> <input type="radio" name="religion"
 				value="Valores Éticos"
 				<?php if($religion == 'Valores Éticos'){echo "checked";} ?>>
-			<?php if($n_curso == 1 or $n_curso == 3){?>Valores Éticos<?php } else { ?>Atención Educativa<?php } ?></label></div>
+			Valores Éticos</label></div>
 			</div>
 			</td>
 		</tr>

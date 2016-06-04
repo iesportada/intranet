@@ -167,7 +167,7 @@ while ($orden_nivel = mysqli_fetch_array($nivele)){
 <tbody>	
 	<?php
 $as = mysqli_query($db_con, "select asignaturas.nombre, asignaturas.codigo from asignaturas where curso = '$orden_nivel[0]' and abrev not like '%\_%' and asignaturas.codigo not in 
-(select distinct codigo from asignaturas where nombre like 'Libre Disp%')");
+(select distinct codigo from asignaturas where nombre like 'Refuerz%')");
 while ($asi = mysqli_fetch_array($as)) {
 	$n_c = mysqli_query($db_con, "select distinct curso from alma where curso = '$orden_nivel[0]'");
 	$niv_cur = mysqli_fetch_array($n_c);

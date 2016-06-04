@@ -124,12 +124,14 @@ if (strstr($_SERVER['REQUEST_URI'],'index_admin.php')==TRUE) {$activo2 = ' class
 					sigue este método de control de la asistencia de los alumnos. El documento PDF se presenta 
 					en formato diario o semanal.</p>
 					
+					<?php endif; ?> 					
+
 					<p><strong><em>Horario de faltas para profesores</em></strong> crea los horarios que los 
 					profesores necesitan para registrar las faltas de asistencia de los alumnos. Cada profesor 
 					marca en su horario el número de clase de los alumnos ausentes en una semana, y, o bien las 
 					registra posteriormente en el módulo de <strong><em>Poner faltas</em></strong>, o bien lo 
 					entrega para quelos Tutores de Faltas lo hagan.</p>
-					<?php endif; ?> 
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Entendido</button>
@@ -209,6 +211,11 @@ if (strstr($_SERVER['REQUEST_URI'],'index_admin.php')==TRUE) {$activo2 = ' class
 		</ul>
 		</li>
 		<?php
+		}
+		else{
+			?>
+			<li><a href="//<?php echo $config['dominio']; ?>/intranet/admin/cursos/horariofaltas.php?horario_profesor=1" target="_blank">Horario de Faltas para Profesores</a></li>
+			<?php
 		}
 		?>
 	</ul>

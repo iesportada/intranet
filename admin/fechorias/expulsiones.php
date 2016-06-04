@@ -132,8 +132,8 @@ if($submit){
 		mysqli_query($db_con,"update Fechoria set expulsion='', inicio='', fin='' where id='".$_POST['borrar_exp']."'");
 	}
 	else{
+
 	if(empty($inicio) OR empty($fin) OR empty($expulsion)){
-		echo "$inicio --> $fin --> $expulsion";
 		echo '<div align="center"><div class="alert alert-danger alert-block fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
 			<h5>ATENCIÓN:</h5>
@@ -149,6 +149,7 @@ No has escrito datos en <u>todos</u> los campos del formulario de expulsión. Int
           </div></div>';
 	}
 	else{
+
 if($inicio){ $inicio1 = explode("-",$inicio); $inicio = $inicio1[2] . "-" . $inicio1[1] ."-" . $inicio1[0];}
 if($fin){ $fin1 = explode("-",$fin); $fin = $fin1[2] . "-" . $fin1[1] ."-" . $fin1[0];}
 $actualizar ="UPDATE  Fechoria SET  expulsion =  '$expulsion', inicio = '$inicio', fin = '$fin' WHERE  Fechoria.id = '$id'"; 
@@ -165,6 +166,21 @@ $result = mysqli_query($db_con, "select FALUMNOS.apellidos, FALUMNOS.nombre, FAL
 		$tfno = $row[14];
 		$tfno_u = $row[15];
 		}
+
+// Activamos opcionalmente el Informe de Tareas
+$tutor="Jefatura de Estudios";
+if($_POST['tareas_exp'] == 'insertareas_exp')
+{
+$repe = mysqli_query($db_con, "select * from tareas_alumnos where claveal = '$claveal' and fecha = '$inicio'");
+if(mysqli_num_rows($repe)=="0")
+{
+	$insertar=mysqli_query($db_con, "INSERT tareas_alumnos (CLAVEAL,APELLIDOS,NOMBRE,unidad,FECHA,DURACION,PROFESOR, FIN) VALUES ('$claveal','$apellidos','$nombre','$unidad', '$inicio','$expulsion','$tutor', '$fin')") or die ("Error: no se ha podido activar el informe:".mysqli_error($db_con));
+}
+else
+{
+$mensaje = "Parece que ya hay un <span class='text-danger'><b>Informe de Tareas</b></span> activado para esa fecha, y no queremos duplicarlo";
+}
+}
 
 // SMS
 if ($config['mod_sms'] and $mens_movil == 'envia_sms') {
@@ -208,10 +224,12 @@ mysqli_query($db_con, "insert into sms (fecha,telefono,mensaje,profesor) values 
 		<br>";
 	}
 }
+
 }
 }
 }
 }
+
 }
 }
 ?> 

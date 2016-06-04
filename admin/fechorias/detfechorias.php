@@ -63,6 +63,7 @@ if (isset($_POST['horas'])) { $horas = $_POST['horas']; }
 if (isset($_POST['fechainicio'])) { $fechainicio = $_POST['fechainicio']; }
 if (isset($_POST['fechafin'])) { $fechafin = $_POST['fechafin']; }
 if (isset($_POST['tareas'])) { $tareas = $_POST['tareas']; }
+if (isset($_POST['tareas_exp'])) { $tareas_exp = $_POST['tareas_exp']; }
 if (isset($_POST['imprimir4'])) { $imprimir4 = $_POST['imprimir4']; }
 if (isset($_POST['imprimir'])) { $imprimir = $_POST['imprimir']; }
 if (isset($_POST['imprimir5'])) { $imprimir5 = $_POST['imprimir5']; }
@@ -260,8 +261,9 @@ echo "<img src='../../xml/fotos/$claveal.jpg' border='2' width='100' height='119
    $pr = $_SESSION ['profi'];
    $conv = mysqli_query($db_con, "SELECT DISTINCT nombre FROM departamentos WHERE cargo like '%b%' AND nombre = '$pr'");
    if (mysqli_num_rows($conv) > '0') {$gucon = '1';}
-	if(stristr($_SESSION['cargo'],'1') == TRUE or $gucon == '1' or stristr($_SESSION['cargo'],'8') == TRUE)
-		{
+   if (mysqli_num_rows($expulsion) > '0') {$expul = '1';}
+   if(stristr($_SESSION['cargo'],'1') == TRUE or $gucon == '1' or stristr($_SESSION['cargo'],'8') == TRUE)
+	{
 	if (stristr($_SESSION['cargo'],'1') == TRUE or stristr($_SESSION['cargo'],'8') == TRUE) {
 	?>
     
@@ -302,7 +304,7 @@ echo "<img src='../../xml/fotos/$claveal.jpg' border='2' width='100' height='119
 
 <div class="row">
 <?php if($config['mod_sms']){?>      
-   <div class="form-group col-sm-6">
+   <div class="form-group col-sm-4">
       <div class="checkbox">    
          <label>
          <input name="mens_movil" type="checkbox" id="sms" value="envia_sms" checked="checked" />
@@ -310,7 +312,15 @@ echo "<img src='../../xml/fotos/$claveal.jpg' border='2' width='100' height='119
       </div>
       </div>
  <?php } ?>
-  <div class="form-group col-sm-6">
+  <div class="form-group col-sm-4">
+    <div class="checkbox">
+      <label for='tareas'>
+	 <input name="tareas_exp" type="checkbox" id="tareas" value="insertareas_exp" checked="checked" />
+      Activar Tareas
+      </label>
+    </div>
+   </div>
+   <div class="form-group col-sm-4">
       <div class="checkbox pull-right">    
          <label>
          <input name="borrar_exp" type="checkbox" id="borrar_exp" value="<?php echo $id;?>" />

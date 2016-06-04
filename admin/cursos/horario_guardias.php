@@ -39,7 +39,7 @@ include("../../menu.php");
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-						<?
+						<?php
 						$hr = mysqli_query($db_con,"select hora_inicio, hora_fin, hora from tramos where hora < 7 or hora like 'R' order by tramo");
 						while ($hor = mysqli_fetch_array($hr)) {
 							if ($hor[2]=="R") {

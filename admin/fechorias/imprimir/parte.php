@@ -93,7 +93,7 @@ $MiPDF->AddFont('ErasDemiBT','B','ErasDemiBT.php');
 $MiPDF->AddFont('ErasMDBT','','ErasMDBT.php');
 $MiPDF->AddFont('ErasMDBT','I','ErasMDBT.php');
 
-$MiPDF->SetMargins (25, 20, 20);
+$MiPDF->SetMargins (25, 15, 15);
 $MiPDF->SetDisplayMode ( 'fullpage' );
 
 $titulo = "Ficha del información del Aula de Convivencia";

@@ -117,13 +117,14 @@ include("menu.php");
 								
 								<div class="form-group">
 									<label for="clase">Otros criterios</label>
-									<select class="form-control" id="clase" name="clase[]" multiple size="6">
+									<select class="form-control" id="clase" name="clase[]" multiple size="7">
 										<option value="Expulsion del Centro">Expulsión del centro</option>
 										<option value="Expulsion del Aula">Expulsión del aula</option>
 										<option value="A.T.I.">A.T.I.: Profesor</option>
 										<option value="A.T.I. Jefatura">A.T.I.: Jefatura</option>
 										<option value="Falta Grave">Falta grave</option>
 										<option value="Falta Muy Grave">Falta muy grave</option>
+										<option value="Biblioteca">Biblioteca</option>
 									</select>
 								</div>
 								

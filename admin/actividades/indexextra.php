@@ -168,10 +168,19 @@ if($detalles == '1')
 			<td style="width:200px"><?php echo $datos[1];?></td>
 			<td><?php echo $mes2;?></td>
 			<td nowrap>
+			<?php 
+			$result_actividad = mysqli_query($db_con, "SELECT cod_actividad FROM `actividadalumno` WHERE cod_actividad = '".$datos[0]."' LIMIT 1");
+					
+				if (mysqli_num_rows($result_actividad)):					
+				echo '<a href="extraescolares.php?id='.$datos[0].'&ver_lista=1">
+						<span class="fa fa-users fa-fw fa-lg" data-bs="tooltip" title="Ver la lista de alumnos seleccionados que realizan la actividad"></span>
+					</a>';
+				endif;
+			?>		
 			 <?php
 				if(stristr($_SESSION['cargo'],'1') == TRUE OR stristr($_SESSION['cargo'],'5') == TRUE OR (stristr($_SESSION['cargo'],'4') == TRUE and $_SESSION['dpt'] == $datos[4]) or ($_SESSION['dpt'] == $datos[4] or strstr(mb_strtoupper($profes_actividad),mb_strtoupper($_SESSION['profi']))==TRUE)){
 					?> <a href="extraescolares.php?id=<?php echo $datos[0];?>&profesores=<?php  echo $datos[5];?>"><span
-				class="fa fa-users fa-fw fa-lg" data-bs="tooltip"
+				class="fa fa-user fa-fw fa-lg" data-bs="tooltip"
 				title="Seleccionar alumnos que realizan la Actividad"></span></a> <?php } ?>
 			<a href="indexextra.php?id=<?php echo $datos[0];?>&detalles=1"
 				data-bs="tooltip" title="Detalles"><span
@@ -199,7 +208,8 @@ if($detalles == '1')
 				if(stristr($_SESSION['cargo'],'1') == TRUE OR stristr($_SESSION['cargo'],'5') == TRUE  OR (stristr($_SESSION['cargo'],'4') == TRUE and $_SESSION['dpt'] == $datos[4])){
 					?> <a href="indexextra.php?id=<?php echo $datos[0];?>&eliminar=1"
 				data-bs="tooltip" title="Eliminar" data-bb="confirm-delete"><span
-				class="fa fa-trash-o fa-fw fa-lg"></span></a> <?php } ?></td>
+				class="fa fa-trash-o fa-fw fa-lg"></span></a> <?php } ?>
+			</td>
 				<?php }?>
 		</tr>
 		<?php

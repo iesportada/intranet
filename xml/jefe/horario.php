@@ -17,17 +17,17 @@ include("../../menu.php");
 <div
 	class="container"><!-- TITULO DE LA PAGINA -->
 <div class="page-header">
-<h2>Administración <small>Importación del horario / Generar XML de
-importación para Séneca</small></h2>
+<h2>AdministraciÃ³n <small>ImportaciÃ³n del horario / Generar XML de
+importaciÃ³n para SÃ©neca</small></h2>
 </div>
 
 <?php $result = mysqli_query($db_con, "SELECT * FROM horw LIMIT 1"); ?>
 <?php if(mysqli_num_rows($result)): ?>
-<div class="alert alert-warning">Ya existe información en la base de
-datos. Este proceso actualizará la información de los horarios. Es
+<div class="alert alert-warning">Ya existe informaciÃ³n en la base de
+datos. Este proceso actualizarÃ¡ la informaciÃ³n de los horarios. Es
 recomendable realizar una <a href="copia_db/index.php"
 	class="alert-link" class="alert-link">copia de seguridad</a> antes de proceder a la
-importación de los datos.</div>
+importaciÃ³n de los datos.</div>
 <?php endif; ?> <!-- SCAFFOLDING -->
 
 <div class="row"><!-- COLUMNA IZQUIERDA -->
@@ -37,7 +37,7 @@ importación de los datos.</div>
 
 <form method="POST" action="horario.php" enctype="multipart/form-data">
 
-<fieldset><legend>Importación del horario / Generar XML</legend>
+<fieldset><legend>ImportaciÃ³n del horario / Generar XML</legend>
 
 <div class="form-group"><label for="HorExpSen"><span class="text-info">Importacion_horarios_seneca.xml</span></label>
 <input type="file" id="HorExpSen" name="HorExpSen" accept="text/xml"></div>
@@ -46,7 +46,7 @@ importación de los datos.</div>
 
 <div class="form-group">
 <div class="checkbox"><label> <input type="checkbox" id="depurar"
-	name="depurar" value="1"> Modo depuración <small>(solo para la opción
+	name="depurar" value="1"> Modo depuraciÃ³n <small>(solo para la opciÃ³n
 Generar XML)</small> </label></div>
 </div>
 
@@ -101,11 +101,11 @@ else {
 					) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci";
 	mysqli_query($db_con, $crea) or die ('<div align="center"><div class="alert alert-danger alert-block fade in">
 					            <button type="button" class="close" data-dismiss="alert">&times;</button>
-								<h5>ATENCIÃ“N:</h5>
+								<h5>ATENCIÃƒâ€œN:</h5>
 					No se ha podido crear la tabla <strong>Horw</strong>. Ponte en contacto con quien pueda resolver el problema.
 					</div></div><br />
 					<div align="center">
-					  <input type="button" value="Volver atrás" name="boton" onClick="history.back(2)" class="btn btn-inverse" />
+					  <input type="button" value="Volver atrÃ¡s" name="boton" onClick="history.back(2)" class="btn btn-inverse" />
 					</div>');
 
 
@@ -127,6 +127,13 @@ else {
 
 			if (utf8_decode($horario->dato[2]) == "") $iddependencia = "NULL";
 			else $iddependencia = utf8_decode($horario->dato[2]);
+
+			// Nombre y detalles de la dependencia
+			$depen = mysqli_query($db_con,"select nomdependencia, descdependencia from dependencias where iddependencia = '$iddependencia'");
+			$dependenci = mysqli_fetch_array($depen);
+			$nomdependencia = $dependenci[0];
+			$descdependencia = $dependenci[1];
+
 
 			if (utf8_decode($horario->dato[3]) == "") {$idunidad=""; $grupo=''; $curso='';}
 			else {
@@ -157,7 +164,7 @@ else {
 				$nombre_asigna = str_replace(" de "," ",$nombre_asigna);
 				$nombre_asigna = str_replace("/","",$nombre_asigna);
 				$nombre_asigna = str_replace(" y "," ",$nombre_asigna);
-				$nombre_asigna = str_replace(" á"," a",$nombre_asigna);
+				$nombre_asigna = str_replace(" Ã¡"," a",$nombre_asigna);
 				$nombre_asigna = str_replace(" a "," ",$nombre_asigna);
 				$nombre_asigna = str_replace(" la "," ",$nombre_asigna);
 				$nombre_asigna = str_replace("(","",$nombre_asigna);
@@ -189,7 +196,7 @@ else {
 			$nom_profe = mysqli_fetch_row($nom_prof);
 			$nombre_profesor = $nom_profe[0];
 
-			mysqli_query($db_con, "INSERT horw (`dia`, `hora`, `a_asig`, `asig`, `c_asig`, `prof`, `no_prof`, `c_prof`, `a_aula`, `n_aula`, `a_grupo`) VALUES ('$diasemana', '$hora', '$abrev', '$nombre_asignatura', '$codigo_asig', '$nombre_profesor', '$num_prof', '$idprofesor', '$iddependencia', '$iddependencia', '$grupo')");
+			mysqli_query($db_con, "INSERT horw (`dia`, `hora`, `a_asig`, `asig`, `c_asig`, `prof`, `no_prof`, `c_prof`, `a_aula`, `n_aula`, `a_grupo`) VALUES ('$diasemana', '$hora', '$abrev', '$nombre_asignatura', '$codigo_asig', '$nombre_profesor', '$num_prof', '$idprofesor', '$descdependencia', '$nomdependencia', '$grupo')");
 
 			$asig = mysqli_query($db_con, "select codigo, nombre from asignaturas where curso = '$curso' and curso not like '' and nombre = '$nombre_asignatura' and abrev = '$abrev' and codigo not like '2'");
 
@@ -216,7 +223,7 @@ else {
 	}
 
 
-	// Actualizamos nombre de las materias / actividades para hacerlas más intuitivas
+	// Actualizamos nombre de las materias / actividades para hacerlas mÃ¡s intuitivas
 	mysqli_query($db_con, "update horw set a_asig = 'TCA' where c_asig = '2'");
 	mysqli_query($db_con, "update asignaturas set abrev = 'TCA' where codigo = '2'");	
 	mysqli_query($db_con, "update horw set a_asig = 'TCF' where c_asig = '279'");
@@ -225,7 +232,7 @@ else {
 	mysqli_query($db_con, "update horw set a_asig = 'GUREC' where c_asig = '353'");
 	mysqli_query($db_con, "update horw set a_asig = 'GUBIB' where c_asig = '26'");
 
-	// Eliminamos el Recreo como 4Âª Hora.
+	// Eliminamos el Recreo como 4 Hora.
 	$hora0 = "update horw set hora = 'R' WHERE hora ='4'";
 	mysqli_query($db_con, $hora0);
 	$hora4 = "UPDATE  horw SET  hora =  '4' WHERE  hora = '5'";
@@ -236,11 +243,11 @@ else {
 	mysqli_query($db_con, $hora6);
 	mysqli_query($db_con, "OPTIMIZE TABLE  `horw`");
 
-	// Metemos a los profes en la tabla profesores hasta que el horario se haya exportado a Séneca y consigamos los datos reales de los mismos
+	// Metemos a los profes en la tabla profesores hasta que el horario se haya exportado a SÃ©neca y consigamos los datos reales de los mismos
 	$tabla_profes = mysqli_query($db_con, "select * from profesores");
 	if (mysqli_num_rows($tabla_profes) > 0) {}
 	else{
-		// Recorremos la tabla Profesores bajada de Séneca
+		// Recorremos la tabla Profesores bajada de SÃ©neca
 		$pro = mysqli_query($db_con, "select distinct asig, a_grupo, prof from horw where a_grupo in (select distinct nomunidad from unidades) order by prof");
 		while ($prf = mysqli_fetch_array($pro)) {
 			$materia = $prf[0];
@@ -324,7 +331,7 @@ else {
 
 	mysqli_query($db_con, "delete from horw_faltas where a_grupo = ''");
 
-	// Cambiamos los numeros de Horw para dejarlos en orden alfabético.
+	// Cambiamos los numeros de Horw para dejarlos en orden alfabÃ©tico.
 	$hor = mysqli_query($db_con, "select distinct prof from horw order by prof");
 	while($hor_profe = mysqli_fetch_array($hor)){
 		$np+=1;
@@ -343,7 +350,7 @@ else {
 
 ?></div>
 <br>
-<div class="well"><legend>Importación del horario con archivo DEL</legend>
+<div class="well"><legend>ImportaciÃ³n del horario con archivo DEL</legend>
 <FORM ENCTYPE="multipart/form-data" ACTION="horarios.php" METHOD="post">
 
 <div class="form-group"><label for="file">Selecciona el archivo con los
@@ -359,35 +366,35 @@ datos del Horario </label> <input type="file" name="archivo" id="file"></div>
 
 </div>
 <!-- /.col-sm-6 --> <!-- COLUMNA DERECHA -->
-<div class="col-sm-6"><legend>Información sobre la importación con
+<div class="col-sm-6"><legend>InformaciÃ³n sobre la importaciÃ³n con
 archivo XML</legend>
 
 <p>Este apartado se encarga de importar los <strong>horarios generados
 por el programa generador de horarios</strong>.</p>
 
 <p>
-El primer formulario nos ofrece la posibilidad de importar el horario del Centro desde un archivo XML. Necesitamos el archivo en formato XML que las aplicaciones comerciales de Horarios (Horwin, etc.) crean para subir a Séneca. <b>Importar</b> extrae el horario del archivo y lo introduce en la tabla <b>Horw</b>.<br>
-El segundo formulario nos ofrece la posibilidad de importar el horario del Centro desde un archivo DEL. Más información abajo.
+El primer formulario nos ofrece la posibilidad de importar el horario del Centro desde un archivo XML. Necesitamos el archivo en formato XML que las aplicaciones comerciales de Horarios (Horwin, etc.) crean para subir a SÃ©neca. <b>Importar</b> extrae el horario del archivo y lo introduce en la tabla <b>Horw</b>.<br>
+El segundo formulario nos ofrece la posibilidad de importar el horario del Centro desde un archivo DEL. MÃ¡s informaciÃ³n abajo.
 </p>
 
-<p>La opción <strong>Generar XML</strong> del primer formulario se encarga de comprobar la
-compatibilidad de los horarios con Séneca, evitando tener que corregir
+<p>La opciÃ³n <strong>Generar XML</strong> del primer formulario se encarga de comprobar la
+compatibilidad de los horarios con SÃ©neca, evitando tener que corregir
 manualmente los horarios de cada profesor. El resultado es la descarga
 del archivo <strong>Importacion_horarios_seneca.xml</strong> preparado
-para subir a Séneca.</p>
+para subir a SÃ©neca.</p>
 
-<p>Si la opción <strong>Modo depuración</strong> se encuentra marcada se
-podrá consultar los <strong>problemas de compatibilidad</strong> que
-afectan al horario y podrán dar problemas en Séneca. Se recomienda
-marcarla antes de importar el horario en Séneca. Con esta opción no se
+<p>Si la opciÃ³n <strong>Modo depuraciÃ³n</strong> se encuentra marcada se
+podrÃ¡ consultar los <strong>problemas de compatibilidad</strong> que
+afectan al horario y podrÃ¡n dar problemas en SÃ©neca. Se recomienda
+marcarla antes de importar el horario en SÃ©neca. Con esta opciÃ³n no se
 genera el archivo XML.</p>
 <hr />
-<legend>Información sobre la importación con archivo DEL</legend>
-<p>La importación de los horarios con el archivo DEL creado por Horwin
-es una opción que sólo debe ser utilizada si no contamos con el archivo
-XML, que es la opción preferida. Se mantiene para aquellos casos en los
-que no tenemos a mano el XML para exportar a Séneca, o este produce errores en la importación. Las preferencias de
-generación del archivo DEL aparecen marcadas en la imagen de abajo.</p>
+<legend>InformaciÃ³n sobre la importaciÃ³n con archivo DEL</legend>
+<p>La importaciÃ³n de los horarios con el archivo DEL creado por Horwin
+es una opciÃ³n que sÃ³lo debe ser utilizada si no contamos con el archivo
+XML, que es la opciÃ³n preferida. Se mantiene para aquellos casos en los
+que no tenemos a mano el XML para exportar a SÃ©neca, o este produce errores en la importaciÃ³n. Las preferencias de
+generaciÃ³n del archivo DEL aparecen marcadas en la imagen de abajo.</p>
 <img border="0" src="exporta_horw.jpg"></div>
 <!-- /.col-sm-6 --></div>
 <!-- /.row --></div>

@@ -376,6 +376,14 @@ if (mysqli_num_rows($chk5)>0) {
 			<td nowrap>
 			<div class="form-group">
 <?php
+$inf_extra = "";			
+$chk66 = mysqli_query($db_con, "select valor, evaluacion from evalua_tutoria where unidad = '$curso' and alumno = '".$row['claveal']."' and campo = 'inf'");
+if (mysqli_num_rows($chk66)>0) {
+	while($inf_extra0 = mysqli_fetch_array($chk66)){
+	$inf_extra.="<p align=left>$inf_extra0[1]: $inf_extra0[0]<p>";
+	}
+}
+
 $inf = "";			
 $chk6 = mysqli_query($db_con, "select valor from evalua_tutoria where unidad = '$curso' and evaluacion = '$evaluacion' and alumno = '".$row['claveal']."' and campo = 'inf'");
 if (mysqli_num_rows($chk6)>0) {
@@ -383,7 +391,7 @@ if (mysqli_num_rows($chk6)>0) {
 	$inf = $inf0[0];
 }
 ?>			
-			<select class="form-control input-sm" name="inf-<?php echo $row['claveal']; ?>">
+			<select class="form-control input-sm" name="inf-<?php echo $row['claveal']; ?>" data-bs="tooltip" data-html="true" title="<?php echo $inf_extra;?>">
 			<option><?php echo $inf;?></option>
 			<option>SI</option>
 			<option>NO</option>
@@ -393,6 +401,14 @@ if (mysqli_num_rows($chk6)>0) {
 			
 			<div class="form-group">
 <?php
+$aci_extra = "";			
+$chk77 = mysqli_query($db_con, "select valor, evaluacion from evalua_tutoria where unidad = '$curso' and alumno = '".$row['claveal']."' and campo = 'aci'");
+if (mysqli_num_rows($chk77)>0) {
+	while($aci_extra0 = mysqli_fetch_array($chk77)){
+	$aci_extra.="<p align=left>$aci_extra0[1]: $aci_extra0[0]<p>";
+	}
+}
+
 $aci = "";			
 $chk7 = mysqli_query($db_con, "select valor from evalua_tutoria where unidad = '$curso' and evaluacion = '$evaluacion' and alumno = '".$row['claveal']."' and campo = 'aci'");
 if (mysqli_num_rows($chk7)>0) {
@@ -400,7 +416,7 @@ if (mysqli_num_rows($chk7)>0) {
 	$aci = $aci0[0];
 }
 ?>			
-			<select class="form-control input-sm" name="aci-<?php echo $row['claveal']; ?>">
+			<select class="form-control input-sm" name="aci-<?php echo $row['claveal']; ?>" data-bs="tooltip" data-html="true" title="<?php echo $aci_extra;?>">
 			<option><?php echo $aci;?></option>
 			<option>SI</option>
 			<option>NO</option>
@@ -410,6 +426,14 @@ if (mysqli_num_rows($chk7)>0) {
 			
 			<div class="form-group">
 <?php
+$dct_extra = "";			
+$chk88 = mysqli_query($db_con, "select valor, evaluacion from evalua_tutoria where unidad = '$curso' and alumno = '".$row['claveal']."' and campo = 'dct'");
+if (mysqli_num_rows($chk88)>0) {
+	while($dct_extra0 = mysqli_fetch_array($chk88)){
+	$aci_extra.="<p align=left>$dct_extra0[1]: $dct_extra0[0]<p>";
+	}
+}
+
 $dct = "";			
 $chk8 = mysqli_query($db_con, "select valor from evalua_tutoria where unidad = '$curso' and evaluacion = '$evaluacion' and alumno = '".$row['claveal']."' and campo = 'dct'");
 if (mysqli_num_rows($chk8)>0) {
@@ -417,7 +441,7 @@ if (mysqli_num_rows($chk8)>0) {
 	$dct = $dct0[0];
 }
 ?>			
-			<select class="form-control input-sm" name="dct-<?php echo $row['claveal']; ?>">
+			<select class="form-control input-sm" name="dct-<?php echo $row['claveal']; ?>" data-bs="tooltip" data-html="true" title="<?php echo $dct_extra;?>">
 			<option><?php echo $dct;?></option>
 			<option>SI</option>
 			<option>NO</option>
@@ -432,6 +456,43 @@ if (mysqli_num_rows($chk8)>0) {
 			
 		</tr>
 		<?php endwhile; ?>
+		<tr>
+			<td colspan='2'>
+				<b>Observaciones generales sobre la <? echo $evaluacion; ?></b>
+			</td>
+			<td colspan='9'>
+
+<?php
+$gen_extra = "";			
+$chk99 = mysqli_query($db_con, "select valor, evaluacion from evalua_tutoria where unidad = '$curso' and campo = 'gen'");
+if (mysqli_num_rows($chk99)>0) {
+	while($gen00 = mysqli_fetch_array($chk99)){
+	$gen_extra.="<p align=left>$gen00[1]:<br>$gen00[0]<p>";
+	}
+}
+if (stristr($evaluacion, "inicia")==TRUE) {
+	$al_evalua = "Ev__Inici";
+}
+elseif (stristr($evaluacion, ".Ordina")==TRUE) {
+	$al_evalua = "Ev_Ordina";
+}
+elseif (stristr($evaluacion, "Extraordina")==TRUE) {
+	$al_evalua = "Ev_Extrao";
+}
+else{
+	$al_evalua = substr($evaluacion,0,2)."_evalua";
+}
+
+$gen = "";			
+$chk9 = mysqli_query($db_con, "select valor from evalua_tutoria where unidad = '$curso' and evaluacion = '$evaluacion' and alumno = '$al_evalua ' and campo = 'gen'");
+if (mysqli_num_rows($chk9)>0) {
+	$gen0 = mysqli_fetch_array($chk9);
+	$gen = $gen0[0];
+}
+?>			
+			<textarea class="form-control" name="gen-<?php echo substr($evaluacion,0,9); ?>" rows="5" style="font-size:10px;padding:1px;width:100%;" data-bs="tooltip" data-html="true" title="<?php echo $gen_extra;?>"><?php echo $gen; ?></textarea>
+			</td>
+		</tr>
 	</tbody>
 </table>
 </div>
